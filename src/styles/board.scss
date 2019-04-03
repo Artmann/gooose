@@ -1,0 +1,68 @@
+.board {
+  &__header,
+  &__column-selection {
+    background: #252527;
+    color: #b4b4b4;
+    padding: 0.75rem 1rem;
+    text-align: center;
+  }
+
+  &__column-selection {
+    align-items: center;
+    box-shadow: #151517 0px 2px 6px;
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.07rem;
+    padding: 0 2rem;
+    text-transform: uppercase;
+
+    @media #{$desktop} {
+      display: none;
+    }
+
+    i {
+      cursor: pointer;
+      display: block;
+    }
+  }
+}
+
+.columns {
+  display: flex;
+}
+
+.column {
+  align-items: center;
+  border-right: solid 1px #292828;
+  color: $color-text;
+  display: none;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 1.5rem 2rem;
+
+  &:last-child {
+    border: none;
+  }
+
+  @media #{$desktop} {
+    display: flex;
+    flex: 1;
+    max-width: 18rem;
+    width: 18rem;
+  }
+
+  &--current {
+    display: flex;
+  }
+
+  &__name {
+    display: none;
+    margin-bottom: 1.5rem;
+    padding: 1rem 0;
+    width: 100%;
+
+    @media #{$desktop} {
+      display: block;
+    }
+  }
+}
