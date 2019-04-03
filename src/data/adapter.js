@@ -1,7 +1,7 @@
 export default  class Adapter {
   constructor() {
     const developmentUrl = 'http://localhost:3000';
-    const productionUrl = 'https://api.towery.io';
+    const productionUrl = 'https://my-board-api.herokuapp.com';
 
     this.baseUrl = process.env.NODE_ENV === 'production' ? productionUrl : developmentUrl;
     this.baseUrl = productionUrl;
