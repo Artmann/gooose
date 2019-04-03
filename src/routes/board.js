@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import Column from "../components/column.js";
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { fetchBoard } from '../actions';
 
@@ -76,6 +77,10 @@ function Board({ boards, dispatch, match }) {
           />
         ))}
       </div>
+
+      <Link to={ `/boards/${board.id}/cards/new` } className="add-card-button">
+        <i className="fas fa-plus"></i>
+      </Link>
     </div>
   );
 }

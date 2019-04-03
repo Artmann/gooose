@@ -5,6 +5,7 @@ import Api from './data/api';
 import Board from './routes/board';
 import Boards from './routes/boards';
 import Home from './routes/home';
+import NewCard from './routes/new-card';
 import SignIn from './routes/sign-in';
 import SignUp from './routes/sign-up';
 import { appStarted } from './actions';
@@ -40,6 +41,7 @@ class App extends Component {
               />
 
             <Route exact path='/boards' component={Boards} />
+            <Route exact path="/boards/:id/cards/new" render={ props => <NewCard {...props} api={this.api} /> }/>
             <Route path='/boards/:id' component={Board} />
           </Switch>
         </Router>
