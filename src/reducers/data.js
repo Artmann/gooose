@@ -3,13 +3,24 @@ const initialState = {
   cards: []
 }
 
+function addOrUpdate(collection, model) {
+  if (collection.find(item => item.id === model.id)) {
+    return collection.map(item => item.id === model.id ? model : item);
+  }
+
+  return [
+    ...collection,
+    model
+  ];
+}
+
 export default function data(state = initialState, action) {
   switch(action.type) {
     case 'FETCHED_BOARD':
-    return {
-      ...state,
-
-    };
+      return  {
+        ...state,
+        boards: addOrUpdate(state.boards, action.board)
+      };
     case 'FETCHED_BOARDS':
       return {
         ...state,
