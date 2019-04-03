@@ -6,13 +6,14 @@ import { fetchBoard } from '../actions';
 
 function Board({ boards, dispatch, match }) {
   const boardId = match.params.id;
+  const [columnIndex, setColumnIndex] = useState(0);
 
   useEffect(() => {
     dispatch(fetchBoard(boardId));
   });
 
   if (boards.length === 0) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   const board = boards.find(b => `${b.id}` === boardId );
@@ -44,7 +45,6 @@ function Board({ boards, dispatch, match }) {
     }
   ];
 
-  const [columnIndex, setColumnIndex] = useState(2);
   const currentColumn = board.columns[columnIndex];
 
   const decreaseIndex = () => {
