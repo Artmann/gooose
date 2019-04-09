@@ -10,6 +10,10 @@ body {
   padding: 0;
 }
 
+textarea {
+  font-family: "Roboto", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
 .app {
 }
 
@@ -20,9 +24,11 @@ body {
 @import "app";
 @import "board";
 @import "card";
+@import "big-form";
 @import "small-form";
 @import "form-error";
 @import "input";
 @import "button";
 @import "loading-spinner";
 @import "password-strength-indicator";
+@import "text-editor";
