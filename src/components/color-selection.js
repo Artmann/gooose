@@ -28,7 +28,6 @@ const ColorButton = styled.div`
 `;
 
 export default function ColorSelection({ color, onChange = () => {} }) {
-  color = '#794acf';
   const baseColors = ['#eb5286', '#794acf', '#5661b3', '#2779bd', '#38a89d', '#1f9d55', '#f2d024', '#de751f'];
   const colors = color && !baseColors.includes(color) ? [ color, ...baseColors] : baseColors;
 
@@ -36,7 +35,7 @@ export default function ColorSelection({ color, onChange = () => {} }) {
     <Wrapper>
       { colors.map((c, key) => {
         return (
-          <ColorBorder selected={ color === c} key={key} onClick={ onChange(c) }>
+          <ColorBorder selected={ color === c} key={key} onClick={ onChange(c) } data-test-color={ c }>
             <ColorButton style={{ background: c }}/>
           </ColorBorder>
         )
