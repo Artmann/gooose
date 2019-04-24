@@ -1,0 +1,372 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColorSelection renders correctly 1`] = `
+<div
+  className="sc-bdVaJa ieBYTJ"
+>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#eb5286"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#eb5286",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#794acf"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#794acf",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#5661b3"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#5661b3",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#2779bd"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#2779bd",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#38a89d"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#38a89d",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#1f9d55"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#1f9d55",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#f2d024"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#f2d024",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#de751f"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#de751f",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`ColorSelection renders correctly with a random color 1`] = `
+<div
+  className="sc-bdVaJa ieBYTJ"
+>
+  <div
+    className="sc-bwzfXH jgELGV"
+    data-test-color="red"
+    selected={true}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "red",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#eb5286"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#eb5286",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#794acf"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#794acf",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#5661b3"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#5661b3",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#2779bd"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#2779bd",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#38a89d"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#38a89d",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#1f9d55"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#1f9d55",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#f2d024"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#f2d024",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#de751f"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#de751f",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`ColorSelection renders correctly with a selected color 1`] = `
+<div
+  className="sc-bdVaJa ieBYTJ"
+>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#eb5286"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#eb5286",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#794acf"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#794acf",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#5661b3"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#5661b3",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH jgELGV"
+    data-test-color="#2779bd"
+    selected={true}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#2779bd",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#38a89d"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#38a89d",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#1f9d55"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#1f9d55",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#f2d024"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#f2d024",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bwzfXH fzDxln"
+    data-test-color="#de751f"
+    selected={false}
+  >
+    <div
+      className="sc-htpNat fCGVby"
+      style={
+        Object {
+          "background": "#de751f",
+        }
+      }
+    />
+  </div>
+</div>
+`;

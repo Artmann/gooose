@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextEditor renders correctly in text mode 1`] = `
+<div
+  className="text-editor"
+>
+  <textarea
+    className="text-editor__area"
+    data-test-id="text-area"
+    onChange={[Function]}
+    value="**Hello World**"
+  />
+  <div>
+    <a
+      className="text-editor__switch text-editor__switch--active"
+      data-test-id="edit-button"
+      onClick={[Function]}
+    >
+      Write
+    </a>
+    <a
+      className="text-editor__switch "
+      data-test-id="preview-button"
+      onClick={[Function]}
+    >
+      Preview
+    </a>
+  </div>
+</div>
+`;
