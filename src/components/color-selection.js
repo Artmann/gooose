@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -43,3 +44,8 @@ export default function ColorSelection({ color, onChange = () => {} }) {
     </Wrapper>
   );
 }
+
+ColorSelection.propTypes = {
+  color: PropTypes.string,
+  onChange: PropTypes.func
+};

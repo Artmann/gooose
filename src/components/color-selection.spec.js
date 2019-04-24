@@ -6,7 +6,7 @@ import renderer from 'react-test-renderer';
 describe('ColorSelection', () => {
   it('calls onChange when you click a color', () => {
     const onChange = jest.fn();
-    const wrapper = mount(<ColorSelection onChange={ onChange } />);
+    const wrapper = mount(<ColorSelection color='#2779bd' onChange={ onChange } />);
 
     wrapper
       .find('[data-test-color="#eb5286"]')
@@ -21,7 +21,7 @@ describe('ColorSelection', () => {
       .create(<ColorSelection />)
       .toJSON();
 
-      expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
   });
 
   it('renders correctly with a selected color', () => {
@@ -29,7 +29,7 @@ describe('ColorSelection', () => {
       .create(<ColorSelection color='#2779bd' />)
       .toJSON();
 
-      expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
   });
 
   it('renders correctly with a random color', () => {
@@ -37,6 +37,6 @@ describe('ColorSelection', () => {
       .create(<ColorSelection color='red' />)
       .toJSON();
 
-      expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
   });
 });
