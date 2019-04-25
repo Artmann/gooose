@@ -1,4 +1,4 @@
-before_script: yarn add --force node-sass
+before_install: yarn add --force node-sass
 language: node_js
 node_js:
   - stable
