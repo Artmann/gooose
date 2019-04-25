@@ -8,7 +8,7 @@ export default function SignInForm({ signIn }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorMessage] = useState(null);
 
   const submit = async event => {
     event.preventDefault();
