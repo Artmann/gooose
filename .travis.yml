@@ -1,4 +1,4 @@
-before_script: npm rebuild --update-binary node-sass
+before_script: yarn add --force node-sass
 language: node_js
 node_js:
   - stable
@@ -6,6 +6,5 @@ cache:
   directories:
     - node_modules
 script:
-  - yarn add --force node-sass
   - yarn lint
   - yarn test
