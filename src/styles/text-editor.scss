@@ -42,8 +42,6 @@
       white-space: -pre-wrap;      /* Opera 4-6 */
       white-space: -o-pre-wrap;    /* Opera 7 */
       word-wrap: break-word;
-
-
     }
 
     h1 {
@@ -75,6 +73,15 @@
     display: inline-block;
     font-size: 0.75rem;
     padding-right: 0.75rem;
+    text-align: left;
+    cursor: pointer;
+    background: none;
+    color: #FFF;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
 
     &--active {
       text-decoration: underline;
