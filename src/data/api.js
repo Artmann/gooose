@@ -5,12 +5,12 @@ export default class Api {
     this.adapter = adapter || new Adapter();
   }
 
-  async createCard(boardId, color, title) {
+  async createCard(boardId, color, text) {
     const { card } = await this.adapter.post('/cards', {
       card: {
         boardId,
         color,
-        title
+        text
       }
     });
 
