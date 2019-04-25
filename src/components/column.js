@@ -1,7 +1,7 @@
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import React, { useState } from "react";
 
-import Card from "./card";
+import Card from './card';
+import React from 'react';
 
 function Column({ cards, column, currentColumn }) {
   const isCurrent = column.id === currentColumn.id;
