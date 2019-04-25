@@ -1,4 +1,4 @@
-before_script: npm rebuild node-sass;
+before_script: npm rebuild --update-binary node-sass
 language: node_js
 node_js:
   - stable
