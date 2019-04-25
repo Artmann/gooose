@@ -1,3 +1,5 @@
+import Api from './api';
+
 describe('api', () => {
   let adapter, api;
 
@@ -11,44 +13,44 @@ describe('api', () => {
   });
 
   describe('createCard', () => {
-    it('creates a card', () => {
-      adapter.post = jest.fn(() => ({
+    it('creates a card', async() => {
+      adapter.post = jest.fn(() => Promise.resolve({
         card: {
           boardId: 23,
-          color: 'red',
-          title: 'my title'
+          color: '#FF00FF',
+          text: 'As a developer, I want the test suite to pass.'
         }
       }));
 
-      const card = api.createCard('my title', 'red', 23);
+      const card = await api.createCard(23, '#FF00FF', 'As a developer, I want the test suite to pass.');
 
       expect(adapter.post).toHaveBeenCalledWith('/cards', {
         card: {
           boardId: 23,
-          color: 'red',
-          title: 'my title'
+          color: '#FF00FF',
+          text: 'As a developer, I want the test suite to pass.'
         }
       });
 
-      expect(card.title).toBe('my title');
-      expect(card.color).toBe('red');
+      expect(card.text).toBe('As a developer, I want the test suite to pass.');
+      expect(card.color).toBe('#FF00FF');
       expect(card.boardId).toBe(23);
     });
   });
 
   describe('getBoards', () => {
-    it('returns the boards', () => {
-      adapter.get = jest.fn(() => ({
-        boards: [{ id: 1, name: 'board1'}, { id: 2, name: 'board2'}]
+    it('returns the boards', async() => {
+      adapter.get = jest.fn(() => Promise.resolve({
+        boards: [{ id: 1, name: 'board1' }, { id: 2, name: 'board2' }]
       }));
 
-      const boards = api.getBoards();
+      const boards = await api.getBoards();
 
       expect(adapter.get).toHaveBeenCalledWith('/boards');
 
-      expect(boards).toBe([
-        { id: 1, name: 'board1'},
-        { id: 2, name: 'board2'}
+      expect(boards).toEqual([
+        { id: 1, name: 'board1' },
+        { id: 2, name: 'board2' }
       ]);
     });
   });
