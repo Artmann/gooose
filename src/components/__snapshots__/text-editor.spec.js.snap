@@ -11,20 +11,20 @@ exports[`TextEditor renders correctly in text mode 1`] = `
     value="**Hello World**"
   />
   <div>
-    <a
+    <button
       className="text-editor__switch text-editor__switch--active"
       data-test-id="edit-button"
       onClick={[Function]}
     >
       Write
-    </a>
-    <a
+    </button>
+    <button
       className="text-editor__switch "
       data-test-id="preview-button"
       onClick={[Function]}
     >
       Preview
-    </a>
+    </button>
   </div>
 </div>
 `;

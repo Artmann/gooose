@@ -18,20 +18,26 @@ export default function TextEditor({ text, onChange = () => {} }) {
     <div className="text-editor">
       { isPreview ? preview : textEditor }
       <div>
-        <a
+        <button
           className={`text-editor__switch ${isPreview ? '' : 'text-editor__switch--active'}`}
-          onClick={() => setIsPreview(false) }
+          onClick={ e => {
+            e.preventDefault();
+            setIsPreview(false);
+          }}
           data-test-id="edit-button"
         >
           Write
-        </a>
-        <a
+        </button>
+        <button
           className={`text-editor__switch ${isPreview ? 'text-editor__switch--active' : ''}`}
-          onClick={() => setIsPreview(true) }
+          onClick={ e => {
+            e.preventDefault();
+            setIsPreview(true);
+          }}
           data-test-id="preview-button"
         >
           Preview
-        </a>
+        </button>
       </div>
     </div>
   );
