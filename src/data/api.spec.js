@@ -22,7 +22,7 @@ describe('api', () => {
         }
       }));
 
-      const card = await api.createCard(23, '#FF00FF', 'As a developer, I want the test suite to pass.');
+      const card = await api.createCard(23, 'As a developer, I want the test suite to pass.', '#FF00FF');
 
       expect(adapter.post).toHaveBeenCalledWith('/cards', {
         card: {

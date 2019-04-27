@@ -36,7 +36,7 @@ export default function ColorSelection({ color, onChange = () => {} }) {
     <Wrapper>
       { colors.map((c, key) => {
         return (
-          <ColorBorder selected={ color === c} key={key} onClick={ onChange(c) } data-test-color={ c }>
+          <ColorBorder selected={ color === c } key={ key } onClick={ () => onChange(c) } data-test-color={ c }>
             <ColorButton style={{ background: c }}/>
           </ColorBorder>
         )
