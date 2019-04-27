@@ -26,6 +26,12 @@ export function fetchBoards() {
   };
 }
 
+export function fetchCards() {
+  return function(dispatch) {
+    api.getCards().then(cards => dispatch(fetchedCards(cards)));
+  }
+}
+
 export function fetchedBoard(board) {
   return {
     type: 'FETCHED_BOARD',
@@ -37,6 +43,13 @@ export function fetchedBoards(boards) {
   return {
     type: 'FETCHED_BOARDS',
     boards
+  };
+}
+
+export function fetchedCards(cards) {
+  return {
+    type: 'FETCHED_CARDS',
+    cards
   };
 }
 

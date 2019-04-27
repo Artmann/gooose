@@ -1,50 +1,24 @@
 import React, { useEffect, useState } from "react";
+import { fetchBoard, fetchCards } from '../actions';
 
 import Column from "../components/column.js";
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { fetchBoard } from '../actions';
 
-function Board({ boards, dispatch, match }) {
+function Board({ boards, cards, dispatch, match }) {
   const boardId = match.params.id;
   const [columnIndex, setColumnIndex] = useState(0);
 
   useEffect(() => {
     dispatch(fetchBoard(boardId));
-  });
+    dispatch(fetchCards());
+  }, []);
 
   if (boards.length === 0) {
     return <div>Loading...</div>;
   }
 
   const board = boards.find(b => `${b.id}` === boardId );
-
-  const cards = [
-    {
-      id: 1,
-      title: `As a player`,
-      columnId: 16,
-      color: 'purple',
-      key: 'cool-leaf-4169',
-      order: 0,
-    },
-    {
-      id: 4,
-      title: `As a power user, I can specify files or folders to backup based on file size, date created and date modified.`,
-      columnId: 17,
-      color: 'purple',
-      key: 'weathered-glade-4271',
-      order: 0,
-    },
-    {
-      id: 2,
-      title: `As a user, I can indicate folders not to backup so that my backup drive isn't filled up with things I don't need saved.`,
-      columnId: 17,
-      color: 'yellow',
-      key: 'frosty-field-9283',
-      order: 1 ,
-    }
-  ];
 
   const currentColumn = board.columns[columnIndex];
 
@@ -86,7 +60,8 @@ function Board({ boards, dispatch, match }) {
 }
 
 const mapStateToProps = ({ data }) => ({
-  boards: data.boards
+  boards: data.boards,
+  cards: data.cards
 });
 
 export default connect(mapStateToProps)(Board);

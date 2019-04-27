@@ -26,6 +26,11 @@ export default function data(state = initialState, action) {
         ...state,
         boards: [...action.boards]
       };
+    case 'FETCHED_CARDS':
+      return {
+        ...state,
+        cards: [...action.cards]
+      };
     case 'FETCHED_DATA':
       const newState = { ...state };
 
