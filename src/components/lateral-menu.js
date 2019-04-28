@@ -4,6 +4,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Backdrop = styled.div`
+  @keyframes fadeIn {
+    from { background: rgba(0, 0, 0, 0.0); }
+    to { background: rgba(0, 0, 0, 0.5); }
+  }
+  animation-duration: 0.15s;
+  animation-name: fadeIn;
+  animation-timing-function: ease-out;
   background: rgba(0, 0, 0, 0.5);
   bottom: 0;
   left: 0;
@@ -12,6 +19,13 @@ const Backdrop = styled.div`
   top: 48px;
 `;
 const Menu = styled.div`
+  @keyframes slideIn {
+    from { left: -1366px; }
+    to { left: 0; }
+  }
+  animation-duration: 0.2s;
+  animation-name: slideIn;
+  animation-timing-function: ease-out;
   background: #fff;
   bottom: 0;
   left: 0;
