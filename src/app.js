@@ -43,9 +43,9 @@ class App extends Component {
                 render={ props => <SignIn {...props} api={this.api} /> }
                 />
 
-              <Route exact path='/boards' component={Boards} />
+              <Route exact path='/boards' render={ props => <Boards {...props} api={this.api} /> } />
               <Route exact path="/boards/:id/cards/new" render={ props => <NewCard {...props} api={this.api} /> }/>
-              <Route path='/boards/:id' component={Board} />
+              <Route path='/boards/:id' render={ props => <Board {...props} api={this.api} /> } />
             </Switch>
           </Suspense>
         </Router>
