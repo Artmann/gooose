@@ -1,15 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 
 import Api from './data/api';
-import Board from './routes/board';
-import Boards from './routes/boards';
 import Home from './routes/home';
-import NewCard from './routes/new-card';
-import SignIn from './routes/sign-in';
-import SignUp from './routes/sign-up';
+import LoadingSpinner from './components/loading-spinner';
 import { appStarted } from './actions';
 import { connect } from 'react-redux';
+
+const Board = lazy(() => import('./routes/board'));
+const Boards = lazy(() => import('./routes/boards'));
+const NewCard = lazy(() => import('./routes/new-card'));
+const SignIn = lazy(() => import('./routes/sign-in'));
+const SignUp = lazy(() => import('./routes/sign-up'));
 
 class App extends Component {
   constructor(props) {
@@ -28,22 +30,24 @@ class App extends Component {
     return (
       <div className="app">
         <Router>
-          <Switch>
-            <Route exact path='/' component={Home} />
+          <Suspense fallback={<LoadingSpinner />}>
+            <Switch>
+              <Route exact path='/' component={Home} />
 
-            <Route
-              path='/sign-up'
-              render={ props => <SignUp {...props} api={this.api} /> }
-              />
-            <Route
-              path='/sign-in'
-              render={ props => <SignIn {...props} api={this.api} /> }
-              />
+              <Route
+                path='/sign-up'
+                render={ props => <SignUp {...props} api={this.api} /> }
+                />
+              <Route
+                path='/sign-in'
+                render={ props => <SignIn {...props} api={this.api} /> }
+                />
 
-            <Route exact path='/boards' component={Boards} />
-            <Route exact path="/boards/:id/cards/new" render={ props => <NewCard {...props} api={this.api} /> }/>
-            <Route path='/boards/:id' component={Board} />
-          </Switch>
+              <Route exact path='/boards' component={Boards} />
+              <Route exact path="/boards/:id/cards/new" render={ props => <NewCard {...props} api={this.api} /> }/>
+              <Route path='/boards/:id' component={Board} />
+            </Switch>
+          </Suspense>
         </Router>
       </div>
     );
