@@ -1,11 +1,17 @@
-import { Link } from 'react-router-dom';
+import Header from '../components/header';
+import HeroSection from '../components/hero-section';
 import React from 'react';
+import styled from 'styled-components';
+
+const FrontPage = styled.div`
+  background: #fff;
+`;
 
 export default function Home() {
   return (
-    <div>
-      <Link to="/sign-up">Sign Up</Link>
-      <Link to="/sign-in">Sign In</Link>
-    </div>
+    <FrontPage>
+      <Header />
+      <HeroSection />
+    </FrontPage>
   );
 }
