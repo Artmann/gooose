@@ -3,16 +3,19 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+const headerHeight = 48;
+
 const StyledHeader = styled.div`
-  aligned-items: center;
+  align-items: center;
   background: #fff;
   box-shadow: ${ props => props.hasShadow ? '0 1px 2px 0 rgba(36, 50, 66, 0.15)' : 'none' };
   color: #151b26;
   display: flex;
   flex-direction: row;
+  height: ${ headerHeight }px;
   justify-content: space-between;
   left: 0;
-  padding: 1.25rem 3rem;
+  padding: 0.25rem 3rem;
   position: fixed;
   right: 0;
   top: 0;
@@ -59,12 +62,16 @@ export default function Header() {
   const [hasScrolledDown, setHasScrolledDown ] = useState(false);
 
   const onScrollHandler = e => {
-    setHasScrolledDown(window.scrollY > 100);
+    setHasScrolledDown(window.scrollY > headerHeight);
   }
 
   useEffect(() => {
     window.addEventListener('scroll', onScrollHandler);
-  }, []);
+
+    return function cleanup() {
+      window.removeEventListener('scroll', onScrollHandler);
+    };
+  });
 
   return (
     <StyledHeader hasShadow={hasScrolledDown}>

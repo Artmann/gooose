@@ -1,3 +1,4 @@
+import FeatureSection from '../components/feature-section';
 import Header from '../components/header';
 import HeroSection from '../components/hero-section';
 import React from 'react';
@@ -12,6 +13,7 @@ export default function Home() {
     <FrontPage>
       <Header />
       <HeroSection />
+      <FeatureSection />
     </FrontPage>
   );
 }
