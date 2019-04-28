@@ -1,3 +1,4 @@
+import media from '../styled-components/media';
 import styled from 'styled-components';
 
 export const FrontPageSection = styled.div`
@@ -8,6 +9,8 @@ export const FrontPageSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 6rem 4rem;
+  padding: 6rem 2rem;
   text-align: center;
+
+  ${ media.tablet`padding: 6rem 4rem;` }
 `;

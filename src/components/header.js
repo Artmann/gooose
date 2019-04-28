@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
+import LateralMenu from './lateral-menu';
 import { Link } from 'react-router-dom';
+import media from '../styled-components/media';
 import styled from 'styled-components';
 
 const headerHeight = 48;
@@ -11,16 +13,14 @@ const StyledHeader = styled.div`
   box-shadow: ${ props => props.hasShadow ? '0 1px 2px 0 rgba(36, 50, 66, 0.15)' : 'none' };
   color: #151b26;
   display: flex;
-  flex-direction: row;
   height: ${ headerHeight }px;
   justify-content: space-between;
   left: 0;
-  padding: 0.25rem 3rem;
+  padding: 0.25rem 2rem;
   position: fixed;
   right: 0;
   top: 0;
 `;
-
 const BrandLink = styled(Link)`
   @font-face {
     font-family: 'Gilroy';
@@ -34,13 +34,16 @@ const BrandLink = styled(Link)`
   font-size: 1.25rem;
   text-decoration: none;
 `;
-
 const BrandImage = styled.img`
   height: 1.5rem;
   margin-right: 0.5rem;
   width: 1.5rem;
 `;
+const Navigation = styled.nav`
+  display: none;
 
+  ${ media.desktop`display: block;` }
+`;
 const NavigationLinks = styled.ul`
   align-items: center;
   display: flex;
@@ -48,7 +51,6 @@ const NavigationLinks = styled.ul`
   margin: 0;
   padding: 0;
 `;
-
 const NavigationLink = styled(Link)`
   color: #646f79;
   font-size: 0.75rem;
@@ -57,13 +59,27 @@ const NavigationLink = styled(Link)`
   text-decoration: none;
   text-transform: uppercase;
 `;
+const LateralMenuButton = styled.i`
+  display: block;
+  cursor: pointer;
+  color: #646f79;
+  font-size: 1.25rem;
+
+  ${ media.desktop`display: none;` }
+`;
+const MobileGutter = styled.div`
+  background: transparent;
+  display: block;
+  width: 1.25rem;
+
+  ${ media.desktop`display: none;` }
+`;
 
 export default function Header() {
   const [hasScrolledDown, setHasScrolledDown ] = useState(false);
-
-  const onScrollHandler = e => {
-    setHasScrolledDown(window.scrollY > headerHeight);
-  }
+  const [showLateralMenu, setShowLateralMenu ] = useState(false);
+  const toggleLateralMenu = () => setShowLateralMenu(!showLateralMenu);
+  const onScrollHandler = e => setHasScrolledDown(window.scrollY > headerHeight);
 
   useEffect(() => {
     window.addEventListener('scroll', onScrollHandler);
@@ -75,11 +91,13 @@ export default function Header() {
 
   return (
     <StyledHeader hasShadow={hasScrolledDown}>
-      <BrandLink to="/sign-up">
+      <LateralMenuButton className="fas fa-bars" onClick={ toggleLateralMenu }/>
+      <LateralMenu isOpen={ showLateralMenu } />
+      <BrandLink to="/">
         <BrandImage src="/images/icon.png" alt="towery.io" />
         <span>towery.io</span>
       </BrandLink>
-      <nav>
+      <Navigation>
         <NavigationLinks>
           <li>
             <NavigationLink to="/sign-up">Sign Up</NavigationLink>
@@ -88,7 +106,8 @@ export default function Header() {
             <NavigationLink to="/sign-in">Sign In</NavigationLink>
           </li>
         </NavigationLinks>
-      </nav>
+      </Navigation>
+      <MobileGutter />
     </StyledHeader>
   );
 }
