@@ -55,4 +55,14 @@ export default class Api {
 
     return cards;
   }
+
+  async updateCard(id, data) {
+    const { card } = await this.adapter.patch(`/cards/${id}`, {
+      card: {
+        ...data
+      }
+    });
+
+    return card;
+  }
 }

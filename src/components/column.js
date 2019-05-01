@@ -3,14 +3,20 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import Card from './card';
 import React from 'react';
 
-function Column({ cards, column, currentColumn }) {
+function Column({ cards, column, currentColumn, onCardMoved = () => {} }) {
   const isCurrent = column.id === currentColumn.id;
   const myCards = cards
     .filter(card => card.columnId === column.id)
     .sort((a, b) => a.order - b.order);
 
-  const onDragEnd = result => {
-    console.log('onDragEnd', result);
+  const onDragEnd = ({ destination, source }) => {
+    const card = myCards[source.index];
+
+    if (!destination) {
+      return;
+    }
+
+    onCardMoved(column, card, destination.index);
   };
 
   return (

@@ -6,6 +6,7 @@ describe('api', () => {
   beforeEach(() => {
     adapter = {
       get: jest.fn(),
+      patch: jest.fn(),
       post: jest.fn()
     };
 
@@ -55,4 +56,29 @@ describe('api', () => {
     });
   });
 
+  describe('update', () => {
+    it('updates a card', async() => {
+      adapter.patch = jest.fn(() => Promise.resolve({
+        card: {
+          id: 1,
+          boardId: 23,
+          color: '#001100',
+          text: 'As a developer, I want the test suite to pass.'
+        }
+      }));
+
+      const card = await api.updateCard(1, { color: '#001100' });
+
+      expect(adapter.patch).toHaveBeenCalledWith('/cards/1', {
+        card: {
+          color: '#001100'
+        }
+      });
+
+      expect(card.id).toBe(1);
+      expect(card.text).toBe('As a developer, I want the test suite to pass.');
+      expect(card.color).toBe('#001100');
+      expect(card.boardId).toBe(23);
+    });
+  });
 });

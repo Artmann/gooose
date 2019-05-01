@@ -31,6 +31,18 @@ export default  class Adapter {
     return data;
   }
 
+  async patch(path, params) {
+    const url = `${this.baseUrl}${path}`;
+    const response = await fetch(url, {
+      body: JSON.stringify(params),
+      headers: this.headers(),
+      method: 'PATCH'
+    });
+    const data = await response.json();
+
+    return data;
+  }
+
   async post(path, params) {
     const url = `${this.baseUrl}${path}`;
     const response = await fetch(url, {

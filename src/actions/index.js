@@ -15,19 +15,19 @@ export function authorized() {
 }
 
 export function fetchBoard(id) {
-  return function(dispatch) {
+  return function (dispatch) {
     api.getBoard(id).then(board => dispatch(fetchedBoard(board)));
   }
 }
 
 export function fetchBoards() {
-  return function(dispatch) {
+  return function (dispatch) {
     api.getBoards().then(boards => dispatch(fetchedBoards(boards)));
   };
 }
 
 export function fetchCards() {
-  return function(dispatch) {
+  return function (dispatch) {
     api.getCards().then(cards => dispatch(fetchedCards(cards)));
   }
 }
@@ -43,6 +43,13 @@ export function fetchedBoards(boards) {
   return {
     type: 'FETCHED_BOARDS',
     boards
+  };
+}
+
+export function fetchedCard(card) {
+  return {
+    type: 'FETCHED_CARD',
+    card
   };
 }
 
@@ -66,4 +73,13 @@ export function fetchedUser(user) {
     type: 'FETCHED_USER',
     user
   };
+}
+
+export function moveCard(column, card, index) {
+  return {
+    type: 'MOVED_CARD',
+    column,
+    card,
+    index
+  }
 }

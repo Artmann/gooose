@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchBoard, fetchCards } from '../actions';
+import { fetchBoard, fetchCards, moveCard } from '../actions';
 
 import Column from "../components/column.js";
 import { Link } from 'react-router-dom'
@@ -34,6 +34,10 @@ function Board({ boards, cards, dispatch, match }) {
     setColumnIndex(index);
   };
 
+  const onCardMoved = (column, card, index) => {
+    dispatch(moveCard(column, card, index));
+  };
+
   return (
     <div className="board">
       <div className="board__column-selection">
@@ -48,6 +52,7 @@ function Board({ boards, cards, dispatch, match }) {
             currentColumn={currentColumn}
             key={key}
             cards={cards}
+            onCardMoved={onCardMoved}
           />
         ))}
       </div>
