@@ -26,13 +26,21 @@ function reOrderCards(cards, column, card, index) {
   const head = sortedCards.slice(0, headIndex).filter(c => c.id !== card.id);
   const tail = sortedCards.slice(tailIndex, sortedCards.length).filter(c => c.id !== card.id);
 
-  return [
+  const newlyOrderedCards = [
     ...head,
     card,
     ...tail
   ]
     .map((c, i) => ({ ...c, order: i }))
     .sort((a, b) => a.order - b.order);
+
+  return cards.map(c => {
+    if (c.columnId === column.id) {
+      return newlyOrderedCards.find(oc => oc.id === c.id);
+    }
+
+    return c;
+  });
 }
 
 export default function data(state = initialState, action) {
