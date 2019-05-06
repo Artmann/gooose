@@ -8,7 +8,6 @@ $padding-side: 1.25rem;
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: 1.5rem;
-  height: 10rem;
   padding-bottom: 1rem;
   text-decoration: none;
   width: 100%;
@@ -31,12 +30,5 @@ $padding-side: 1.25rem;
     letter-spacing: 0.04rem;
     padding: 0.25rem $padding-side;
     text-transform: uppercase;
-  }
-
-  &__title {
-    flex: 1;
-    line-height: 2;
-    font-size: 0.8rem;
-    padding: 0.25rem $padding-side;
   }
 }
