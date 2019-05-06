@@ -1,10 +1,11 @@
 import React, { Component, Suspense, lazy } from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+import { appStarted, fetchedData } from './actions';
 
 import Api from './data/api';
 import Home from './routes/home';
 import LoadingSpinner from './components/loading-spinner';
-import { appStarted } from './actions';
+import Pusher from 'pusher-js';
 import { connect } from 'react-redux';
 
 const Board = lazy(() => import('./routes/board'));
@@ -24,6 +25,29 @@ class App extends Component {
     const { dispatch } = this.props;
 
     dispatch(appStarted());
+
+    const authToken = localStorage.getItem('token');
+
+    if (authToken) {
+      Pusher.logToConsole = process.env.NODE_ENV !== 'production';
+
+      const pusher = new Pusher('5aa765358dc6aa672243', {
+        auth: {
+          headers: {
+          'Authorization': `Bearer ${authToken}`
+          }
+        },
+        authEndpoint: 'https://my-board-api.herokuapp.com/channels/auth',
+        cluster: 'eu',
+        forceTLS: true
+      });
+      const channel = pusher.subscribe('private-team-1');
+
+      channel.bind('model-change', function ({ model, payload }) {
+        console.log(model, payload);
+        dispatch(fetchedData(model, payload));
+      });
+    }
   }
 
   render() {

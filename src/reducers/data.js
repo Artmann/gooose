@@ -60,7 +60,7 @@ export default function data(state = initialState, action) {
     case 'FETCHED_DATA':
       const newState = { ...state };
 
-      newState[action.model] = action.data;
+      newState[action.model] = addOrUpdate(state[action.model], action.data);
 
       return newState;
     case 'MOVED_CARD':
