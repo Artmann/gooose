@@ -3,7 +3,7 @@ import Adapter from './adapter';
 async function createMockResponse(json) {
   const mockJsonPromise = Promise.resolve(json);
 
-  return { json: async() => JSON.parse(await mockJsonPromise) };
+  return { ok: true, json: async() => JSON.parse(await mockJsonPromise) };
 }
 
 const headers = {
@@ -36,7 +36,9 @@ describe('Adapter', () => {
       });
 
       expect(global.fetch).toHaveBeenCalledWith('https://my-board-api.herokuapp.com/cards', {
-        headers
+        body: null,
+        headers,
+        method: 'GET'
       });
     });
 

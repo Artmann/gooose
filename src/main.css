@@ -1,0 +1,12 @@
+body {
+  background: #F9FBFC;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  font-family: "Roboto", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
