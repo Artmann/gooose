@@ -22,35 +22,31 @@ export default  class Adapter {
   }
 
   async get(path) {
-    const url = `${this.baseUrl}${path}`;
-    const response = await fetch(url, {
-      headers: this.headers()
-    });
-    const data = await response.json();
-
-    return data;
+    return await this._request('GET', path);
   }
 
   async patch(path, params) {
-    const url = `${this.baseUrl}${path}`;
-    const response = await fetch(url, {
-      body: JSON.stringify(params),
-      headers: this.headers(),
-      method: 'PATCH'
-    });
-    const data = await response.json();
-
-    return data;
+    return await this._request('PATCH', path, params);
   }
 
   async post(path, params) {
+    return await this._request('POST', path, params);
+  }
+
+  async _request(method, path, params = null) {
     const url = `${this.baseUrl}${path}`;
+
     const response = await fetch(url, {
-      body: JSON.stringify(params),
+      body: params ? JSON.stringify(params) : null,
       headers: this.headers(),
-      method: 'POST'
+      method
     });
+
     const data = await response.json();
+    
+    if (!response.ok) {
+      throw new Error(data.errors[0]);
+    }
 
     return data;
   }

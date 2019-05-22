@@ -1,23 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import SignUpForm from '../components/sign-up-form';
+import View from '../styled-components/view';
 import { authorized } from '../actions';
 import { connect } from 'react-redux';
 
 function SignUp({ api, dispatch, history }) {
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const signUp = async (email, name, password) => {
-    await api.createUser(email, name, password);
+    try {
+      setErrorMessage(null);
+      setIsSubmitting(true);
 
-    const { token } = await api.createSession(email, password);
+      await api.createUser(email, name, password);
 
-    localStorage.setItem('token', token);
-    dispatch(authorized());
-    history.push('/');
+      const { token } = await api.createSession(email, password);
+
+      localStorage.setItem('token', token);
+      dispatch(authorized());
+
+      setIsSubmitting(false);
+      history.push('/boards');
+    } catch (error) {
+      setIsSubmitting(false);
+      setErrorMessage(error.toString());
+    }
   };
 
   return (
-    <div className="view">
-      <SignUpForm signUp={signUp} />
-    </div>
+    <View>
+      <SignUpForm
+        errorMessage={errorMessage}
+        isSubmitting={isSubmitting}
+        signUp={signUp}   
+      />
+    </View>
   );
 }
 

@@ -1,4 +1,4 @@
-import './styles/main.scss';
+import './main.css';
 import 'whatwg-fetch';
 
 import * as serviceWorker from './serviceWorker';

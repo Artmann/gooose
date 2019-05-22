@@ -6,7 +6,9 @@ import Api from './data/api';
 import Home from './routes/home';
 import LoadingSpinner from './components/loading-spinner';
 import Pusher from 'pusher-js';
+import { ThemeProvider } from 'styled-components';
 import { connect } from 'react-redux';
+import light from './themes/light';
 
 const Board = lazy(() => import('./routes/board'));
 const Boards = lazy(() => import('./routes/boards'));
@@ -52,28 +54,30 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app">
-        <Router>
-          <Suspense fallback={<LoadingSpinner />}>
-            <Switch>
-              <Route exact path='/' component={Home} />
+      <ThemeProvider theme={light}>
+        <div className="app">
+          <Router>
+            <Suspense fallback={<LoadingSpinner />}>
+              <Switch>
+                <Route exact path='/' component={Home} />
 
-              <Route
-                path='/sign-up'
-                render={ props => <SignUp {...props} api={this.api} /> }
-                />
-              <Route
-                path='/sign-in'
-                render={ props => <SignIn {...props} api={this.api} /> }
-                />
+                <Route
+                  path='/sign-up'
+                  render={ props => <SignUp {...props} api={this.api} /> }
+                  />
+                <Route
+                  path='/sign-in'
+                  render={ props => <SignIn {...props} api={this.api} /> }
+                  />
 
-              <Route exact path='/boards' render={ props => <Boards {...props} api={this.api} /> } />
-              <Route exact path="/boards/:id/cards/new" render={ props => <NewCard {...props} api={this.api} /> }/>
-              <Route path='/boards/:id' render={ props => <Board {...props} api={this.api} /> } />
-            </Switch>
-          </Suspense>
-        </Router>
-      </div>
+                <Route exact path='/boards' render={ props => <Boards {...props} api={this.api} /> } />
+                <Route exact path="/boards/:id/cards/new" render={ props => <NewCard {...props} api={this.api} /> }/>
+                <Route path='/boards/:id' render={ props => <Board {...props} api={this.api} /> } />
+              </Switch>
+            </Suspense>
+          </Router>
+        </div>
+      </ThemeProvider>
     );
   }
 }

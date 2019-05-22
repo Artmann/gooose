@@ -18,3 +18,11 @@ const media = Object.keys(sizes).reduce((acc, label) => {
 }, {});
 
 export default media;
+
+export function isMobile() {
+  return window.innerWidth < sizes.tablet;
+}
+
+export function isTablet() {
+  return window.innerWidth < sizes.desktop;
+}

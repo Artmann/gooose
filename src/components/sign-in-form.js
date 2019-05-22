@@ -1,72 +1,75 @@
 import React, { useState } from 'react';
+import { SmallForm, SmallFormActions, SmallFormHeader, SmallFormLink, SmallFormLinks } from '../styled-components/small-form';
 
-import FormError from './form-error';
-import { Link } from 'react-router-dom';
-import LoadingSpinner from './loading-spinner';
+import { CtaButton } from '../styled-components/buttons';
+import FormError from "./form-error";
+import LoadingSpinner from "./loading-spinner";
+import PropTypes from 'prop-types';
+import TextInput from '../components/text-input';
 
-export default function SignInForm({ signIn }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [errorMessage] = useState(null);
-
-  const submit = async event => {
+function SignInForm({ errorMessage = null, isSubmitting = false, signIn }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  
+  const onSubmit = event => {
     event.preventDefault();
-    setIsSubmitting(true);
-
-    await signIn(email, password);
-
-    setIsSubmitting(false);
+    signIn(email, password);
   };
 
   return (
-    <form className="small-form" onSubmit={submit}>
-      {isSubmitting ? <LoadingSpinner /> : ''}
+    <SmallForm onSubmit={onSubmit}>
 
-      <h1 className="small-form__header">
+      {isSubmitting ? <LoadingSpinner /> : ""}
+
+      <SmallFormHeader>
         Welcome Back <span role="img" aria-label="smiley">😊</span>
-      </h1>
+      </SmallFormHeader>
 
       <FormError message={errorMessage} />
 
-      <div className="input">
-        <label className="input__label">Email</label>
-        <input
-          autoFocus={true}
-          className="input__box"
-          data-testid="sign-in-form-email"
-          name="email"
-          placeholder="tony@company.com"
-          required={true}
-          type="email"
-          value={email}
-          onChange={({ target }) => setEmail(target.value)}
-        />
-      </div>
-      <div className="input">
-        <label className="input__label">Password</label>
-        <input
-          className="input__box"
-          data-testid="sign-in-form-password"
-          name="password"
-          placeholder="*********"
-          required={true}
-          type="password"
-          value={password}
-          onChange={({ target }) => setPassword(target.value)}
-        />
-      </div>
-      <div className="small-form__actions">
-        <button className="button button--primary" data-testid="sign-in-form-submit">Sign In</button>
-      </div>
-      <div className="small-form__links">
-        <Link to="/sign-up" className="small-form__link">
+      <TextInput
+        label="Email"
+        name="email"
+        placeholder="john.smith@company.com"
+        required={true}
+        type="email"
+        value={email}
+        onChange={({ target }) => setEmail(target.value)}
+      />
+
+      <TextInput
+        label="Password"
+        name="password"
+        placeholder="****************"
+        required={true}
+        type="password"
+        value={password}
+        onChange={({ target }) => setPassword(target.value)}
+      />
+
+      <SmallFormActions>
+        <CtaButton data-test-sign-in-button="true">
+          Sign In
+        </CtaButton>
+      </SmallFormActions>
+
+      <SmallFormLinks>
+        <SmallFormLink to="/sign-up">
           Sign Up
-        </Link>
-        <Link to="/reset-image" className="small-form__link">
+        </SmallFormLink>
+        <SmallFormLink to="/reset-password">
           Reset Password
-        </Link>
-      </div>
-    </form>
+        </SmallFormLink>
+      </SmallFormLinks>
+    </SmallForm>
   );
 }
+
+SignInForm.propTypes = {
+  signIn: PropTypes.func.isRequired,
+
+  errorMessage: PropTypes.string,
+  isSubmitting: PropTypes.bool
+};
+
+export default SignInForm;
