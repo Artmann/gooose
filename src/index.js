@@ -10,10 +10,17 @@ import ReactDOM from 'react-dom';
 import lazyLoadAssets from './lazy-load-assets';
 import store from './store';
 
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
+
+const client = new ApolloClient();
+
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <ApolloProvider client={client}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </ApolloProvider>,
   document.getElementById('root')
 );
 

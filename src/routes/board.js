@@ -1,18 +1,41 @@
 import React, { useEffect, useState } from "react";
 import { fetchBoard, fetchCards, moveCard } from '../actions';
-
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
 import Column from "../components/column.js";
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
+
+const query = gql`
+  board(id: ${ props => props.id }) {
+    id,
+    name
+  }
+`;
+
+function wrap(content) {
+  return (
+    <Query query={query}>
+      {({ loading, error, data }) => {
+      if (loading) return 'Loading...';
+      if (error) return `Error! ${error.message}`;
+
+      return content;
+    }}
+    </Query>
+  );
+}
 
 function Board({ boards, cards, dispatch, match }) {
   const boardId = match.params.id;
   const [columnIndex, setColumnIndex] = useState(0);
 
+  /**
   useEffect(() => {
     dispatch(fetchBoard(boardId));
     dispatch(fetchCards());
   }, []);
+  */
 
   if (boards.length === 0) {
     return <div>Loading...</div>;
