@@ -1,23 +1,38 @@
+import React, { useState } from "react";
+
 import NewCardForm from '../components/new-card-form';
-import React from "react";
+import View from '../styled-components/view';
 import { connect } from 'react-redux';
 
 function newCard({ api, history, match }) {
   const boardId = match.params.id;
 
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const createCard = async(text, color) => {
     try {
+      setErrorMessage(null);
+      setIsSubmitting(true);
+
       await api.createCard(boardId, text, color);
+      
+      setIsSubmitting(false);
       history.push(`/boards/${boardId}`);
     } catch(error) {
-      console.log('error', error);
+      setIsSubmitting(false);
+      setErrorMessage(error.toString());
     }
   };
 
   return (
-    <div className="view">
-      <NewCardForm createCard={createCard}/>
-    </div>
+    <View>
+      <NewCardForm 
+        createCard={createCard}
+        errorMessage={errorMessage}
+        isSubmitting={isSubmitting}
+        />
+    </View>
   );
 }
 

@@ -9,7 +9,7 @@ const Wrapper = styled.div`
 
 const ColorBorder = styled.div`
   border: solid 2px transparent;
-  border-color: ${ props => props.selected ? 'rgba(255, 255, 255, 0.25);' : 'transparent;' }
+  border-color: ${ props => props.selected ? 'rgba(0, 0, 0, 0.2);' : 'transparent;' }
   border-radius: 50%;
   cursor: pointer;
   height: 1rem;
@@ -18,7 +18,7 @@ const ColorBorder = styled.div`
   width: 1rem;
 
   &:hover {
-    border-color: rgba(255, 255, 255, 0.75);
+    border-color: rgba(0, 0, 0, 0.4);
   }
 `;
 

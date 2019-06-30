@@ -6,7 +6,7 @@ const Base = styled.div`
   margin-bottom: 2rem;
 `;
 
-const Label = styled.label`
+export const Label = styled.label`
   display: block;
   font-size: 0.8rem;
   font-weight: 400;
@@ -18,6 +18,7 @@ const Input = styled.input`
   border: none;
   border-bottom: solid 1px #555;
   box-sizing: border-box;
+  color: ${ props => props.theme.inputColor };
   font-size: 0.8rem;
   margin-bottom: 1px;
   padding: 0.5rem 0rem;
