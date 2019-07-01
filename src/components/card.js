@@ -65,6 +65,7 @@ function Card({ card, history, index }) {
               onClick={() => history.push(`/cards/${card.id}`) }
               >
               <CardColorMarker color={color} />
+              <p>ORDER: { card.order }</p>
               <CardText dangerouslySetInnerHTML={renderedText()}></CardText>
               <Key color={theme.secondaryTextColor}>{key}</Key>
             </CardContainer>

@@ -15,32 +15,28 @@ function addOrUpdate(collection, model) {
 }
 
 function reOrderCards(cards, column, card, index) {
-  const sortedCards = cards
+  const reOrderedCards = cards
     .filter(c => c.columnId === column.id)
+    .filter(c => c.id !== card.id)
     .sort((a, b) => a.order - b.order);
 
-  const oldCardIndex = sortedCards.indexOf(card);
-  const headIndex = oldCardIndex > index || oldCardIndex === -1 ? index : index + 1;
-  const tailIndex = oldCardIndex < index || oldCardIndex === -1 ? index + 1 : index;
+  reOrderedCards.splice(index, 0, card);
 
-  const head = sortedCards.slice(0, headIndex).filter(c => c.id !== card.id);
-  const tail = sortedCards.slice(tailIndex, sortedCards.length).filter(c => c.id !== card.id);
-
-  const newlyOrderedCards = [
-    ...head,
-    card,
-    ...tail
-  ]
-    .map((c, i) => ({ ...c, order: i }))
-    .sort((a, b) => a.order - b.order);
+  const maxOrder = Math.max(...reOrderedCards.map(c => c.order));
+  const previousOrder = index > 0 ? reOrderedCards[index - 1].order : 0;
+  const nextOrder = index <= (reOrderedCards.length - 2) ? reOrderedCards[index + 1].order : maxOrder * 2;
+  const newOrder = previousOrder + (nextOrder - previousOrder) * 0.5;
 
   return cards.map(c => {
-    if (c.columnId === column.id) {
-      return newlyOrderedCards.find(oc => oc.id === c.id);
+    if (c.id === card.id) {
+      return {
+        ...card,
+        order: newOrder
+      };
     }
 
     return c;
-  });
+  }).sort((a, b) => a.order - b.order);
 }
 
 export default function data(state = initialState, action) {

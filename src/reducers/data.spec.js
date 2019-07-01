@@ -31,8 +31,8 @@ describe('data', () => {
       const newState = reducer(state, moveCard({}, card1, 1));
 
       expect(newState.cards).toEqual([
-        { id: 1, order: 1 },
-        { id: 2, order: 0 },
+        { id: 2, order: 1 },
+        { id: 1, order: 1.5 },
         { id: 3, order: 2 }
       ]);
     });
@@ -50,9 +50,9 @@ describe('data', () => {
       const newState = reducer(state, moveCard({}, card1, 2));
 
       expect(newState.cards).toEqual([
-        { id: 1, order: 2 },
-        { id: 2, order: 0 },
-        { id: 3, order: 1 }
+        { id: 2, order: 1 },
+        { id: 3, order: 2 },
+        { id: 1, order: 3 }
       ]);
     });
 
@@ -72,9 +72,9 @@ describe('data', () => {
 
       expect(newState.cards).toEqual([
         { id: 1, order: 0, columnId: 1 },
-        { id: 2, order: 2, columnId: 1 },
-        { id: 3, order: 3, columnId: 1 },
-        { id: 4, order: 1, columnId: 1 },
+        { id: 4, order: 0.5, columnId: 1 },
+        { id: 2, order: 1, columnId: 1 },
+        { id: 3, order: 2, columnId: 1 },
         { id: 5, order: 2, columnId: 2 }
       ]);
     });
