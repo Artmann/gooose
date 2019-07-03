@@ -11,7 +11,7 @@ exports[`TextInput renders correctly 1`] = `
   </label>
   <input
     autoFocus={false}
-    className="sc-htpNat elXMFC"
+    className="sc-htpNat fNIrHl"
     data-test-input="name"
     name="name"
     onChange={[Function]}
@@ -34,7 +34,7 @@ exports[`TextInput renders correctly with props 1`] = `
   </label>
   <input
     autoFocus={true}
-    className="sc-htpNat elXMFC"
+    className="sc-htpNat fNIrHl"
     data-test-input="email"
     name="email"
     onChange={[Function]}
