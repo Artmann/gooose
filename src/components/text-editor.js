@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
 import marked from 'marked';
-import media from '../styled-components/media';
 import styled from 'styled-components';
 
 const Area = styled.textarea`
@@ -99,7 +98,7 @@ const Switch = styled.button`
 `;
 const Switches = styled.div `
   margin: 1rem 0;
-`; 
+`;
 
 export default function TextEditor({ text, onChange = () => {} }) {
   const [isPreview, setIsPreview] = useState(false);

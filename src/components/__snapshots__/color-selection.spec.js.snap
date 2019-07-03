@@ -5,7 +5,7 @@ exports[`ColorSelection renders correctly 1`] = `
   className="sc-bdVaJa ieBYTJ"
 >
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#eb5286"
     onClick={[Function]}
     selected={false}
@@ -20,7 +20,7 @@ exports[`ColorSelection renders correctly 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#794acf"
     onClick={[Function]}
     selected={false}
@@ -35,7 +35,7 @@ exports[`ColorSelection renders correctly 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#5661b3"
     onClick={[Function]}
     selected={false}
@@ -50,7 +50,7 @@ exports[`ColorSelection renders correctly 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#2779bd"
     onClick={[Function]}
     selected={false}
@@ -65,7 +65,7 @@ exports[`ColorSelection renders correctly 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#38a89d"
     onClick={[Function]}
     selected={false}
@@ -80,7 +80,7 @@ exports[`ColorSelection renders correctly 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#1f9d55"
     onClick={[Function]}
     selected={false}
@@ -95,7 +95,7 @@ exports[`ColorSelection renders correctly 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#f2d024"
     onClick={[Function]}
     selected={false}
@@ -110,7 +110,7 @@ exports[`ColorSelection renders correctly 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#de751f"
     onClick={[Function]}
     selected={false}
@@ -132,7 +132,7 @@ exports[`ColorSelection renders correctly with a random color 1`] = `
   className="sc-bdVaJa ieBYTJ"
 >
   <div
-    className="sc-bwzfXH jgELGV"
+    className="sc-bwzfXH jfJaPA"
     data-test-color="red"
     onClick={[Function]}
     selected={true}
@@ -147,7 +147,7 @@ exports[`ColorSelection renders correctly with a random color 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#eb5286"
     onClick={[Function]}
     selected={false}
@@ -162,7 +162,7 @@ exports[`ColorSelection renders correctly with a random color 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#794acf"
     onClick={[Function]}
     selected={false}
@@ -177,7 +177,7 @@ exports[`ColorSelection renders correctly with a random color 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#5661b3"
     onClick={[Function]}
     selected={false}
@@ -192,7 +192,7 @@ exports[`ColorSelection renders correctly with a random color 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#2779bd"
     onClick={[Function]}
     selected={false}
@@ -207,7 +207,7 @@ exports[`ColorSelection renders correctly with a random color 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#38a89d"
     onClick={[Function]}
     selected={false}
@@ -222,7 +222,7 @@ exports[`ColorSelection renders correctly with a random color 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#1f9d55"
     onClick={[Function]}
     selected={false}
@@ -237,7 +237,7 @@ exports[`ColorSelection renders correctly with a random color 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#f2d024"
     onClick={[Function]}
     selected={false}
@@ -252,7 +252,7 @@ exports[`ColorSelection renders correctly with a random color 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#de751f"
     onClick={[Function]}
     selected={false}
@@ -274,7 +274,7 @@ exports[`ColorSelection renders correctly with a selected color 1`] = `
   className="sc-bdVaJa ieBYTJ"
 >
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#eb5286"
     onClick={[Function]}
     selected={false}
@@ -289,7 +289,7 @@ exports[`ColorSelection renders correctly with a selected color 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#794acf"
     onClick={[Function]}
     selected={false}
@@ -304,7 +304,7 @@ exports[`ColorSelection renders correctly with a selected color 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#5661b3"
     onClick={[Function]}
     selected={false}
@@ -319,7 +319,7 @@ exports[`ColorSelection renders correctly with a selected color 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH jgELGV"
+    className="sc-bwzfXH jfJaPA"
     data-test-color="#2779bd"
     onClick={[Function]}
     selected={true}
@@ -334,7 +334,7 @@ exports[`ColorSelection renders correctly with a selected color 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#38a89d"
     onClick={[Function]}
     selected={false}
@@ -349,7 +349,7 @@ exports[`ColorSelection renders correctly with a selected color 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#1f9d55"
     onClick={[Function]}
     selected={false}
@@ -364,7 +364,7 @@ exports[`ColorSelection renders correctly with a selected color 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#f2d024"
     onClick={[Function]}
     selected={false}
@@ -379,7 +379,7 @@ exports[`ColorSelection renders correctly with a selected color 1`] = `
     />
   </div>
   <div
-    className="sc-bwzfXH fzDxln"
+    className="sc-bwzfXH caQyny"
     data-test-color="#de751f"
     onClick={[Function]}
     selected={false}
