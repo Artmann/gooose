@@ -2,6 +2,7 @@ import { CtaLink } from '../styled-components/buttons';
 import { FrontPageSection } from '../styled-components/sections';
 import React from 'react';
 import media from '../styled-components/media';
+import { boxShadow } from '../styled-components/shadows';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -36,8 +37,8 @@ const Header = styled.h1`
   ${ media.tablet`font-size: 1.75rem;`}
 `;
 const HeroImage = styled.img`
+  ${boxShadow}
   border: solid 1px #fafafa;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   height: auto;
   margin: 1.5rem 0;
   max-width: 38rem;
@@ -73,7 +74,7 @@ export default function HeroSection() {
         <Second>
           <HeroImage
             alt="Help your team win with Towery"
-            src="images/hero-image-450w.png" 
+            src="images/hero-image-450w.png"
             srcSet="images/hero-image-450w.png 450w,
             images/hero-image-800w.png 800w,
             images/hero-image-1300w.png 1300w"

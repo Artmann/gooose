@@ -1,22 +1,24 @@
 import { Link } from 'react-router-dom';
 import media from '../styled-components/media';
+import { boxShadow } from '../styled-components/shadows';
 import styled from 'styled-components';
 
 export const SmallForm = styled.form`
   background: ${ props => props.theme.containerBackground };
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
-  max-width: 15rem;
+  height: 100vh;
+  margin: 0;
+  padding: 2rem 3rem;
   width: 100%;
 
   ${media.tablet`
-    margin: 3rem auto;
+    ${boxShadow}
+    height: auto;
     max-width: 20rem;
   `}
 
   ${media.desktop`
-    margin: 4rem auto;
     max-width: 20rem;
   `}
 `;

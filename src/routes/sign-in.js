@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import SignInForm from '../components/sign-in-form';
-import View from '../styled-components/view';
+import ViewWithCenteredContent from '../styled-components/view-with-centered-content';
 import { authorized } from '../actions';
 import { connect } from 'react-redux';
 
@@ -27,13 +27,13 @@ function SignIn({ api, dispatch, history }) {
   };
 
   return (
-    <View>
-      <SignInForm 
+    <ViewWithCenteredContent>
+      <SignInForm
         errorMessage={errorMessage}
         isSubmitting={isSubmitting}
         signIn={signIn}
       />
-    </View>
+    </ViewWithCenteredContent>
   );
 }
 
