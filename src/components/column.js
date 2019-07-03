@@ -1,25 +1,31 @@
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import React, { forwardRef } from 'react';
 
 import Card from './card';
-import React from 'react';
 import { ThemeConsumer } from '../context/theme';
 import media from '../styled-components/media';
 import styled from 'styled-components';
 
 const ColumnContainer = styled.div`
   align-items: center;
+  background: ${ props => props.color };
   border-right: solid 1px ${ props => props.borderColor };
-  display: ${ props => props.isCurrent ? 'flex' : 'none' };
+  display: flex;
   flex-direction: column;
+  height: 100%;
+  left: ${ props => props.number * window.outerWidth }px;
   min-height: 100vh;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 0;
+  position: absolute;
+  top: 0px;
+ // transform: translate(${ props => props.number * window.outerWidth }px, 0);
+  width: ${ window.outerWidth }px;
 
   &:last-child {
     border: none;
   }
 
   ${media.desktop`
-    display: flex;
     flex: 1;
     max-width: 24rem;
     padding-top: 2rem;
@@ -40,7 +46,8 @@ const Name = styled.div`
   ${media.desktop` display: block; `}
 `;
 
-function Column({ cards, column, currentColumn, onCardMoved = () => {} }) {
+function Column({ cards, column, currentColumn, number, onCardMoved = () => {} }, ref) {
+  const colors = ['red', 'green', 'blue'];
   const isCurrent = column.id === currentColumn.id;
   const myCards = cards
     .filter(card => card.columnId === column.id)
@@ -63,9 +70,14 @@ function Column({ cards, column, currentColumn, onCardMoved = () => {} }) {
           <ThemeConsumer>
             {theme =>
               <ColumnContainer
+                color={colors[number]}
                 borderColor={theme.borderColor}
                 isCurrent={isCurrent}
-                ref={provided.innerRef}
+                number={number}
+                ref={element => {
+                  provided.innerRef(element);
+                  ref.current = element;
+                }}
                 >
                 <Name color={theme.headerColor}>{column.name}</Name>
 
@@ -83,4 +95,4 @@ function Column({ cards, column, currentColumn, onCardMoved = () => {} }) {
   );
 }
 
-export default Column;
+export default forwardRef(Column);

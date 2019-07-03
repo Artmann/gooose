@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { createRef, useEffect, useLayoutEffect, useState } from "react";
 import { fetchBoard, fetchCards, moveCard } from '../actions';
+import media, { isTablet } from "../styled-components/media";
 
 import Column from "../components/column.js";
 import { Link } from 'react-router-dom'
@@ -7,11 +8,16 @@ import Swipe from 'react-easy-swipe';
 import { ThemeConsumer } from '../context/theme';
 import View from '../components/view';
 import { connect } from 'react-redux';
-import { isTablet } from "../styled-components/media";
 import styled from 'styled-components';
 
 const Columns = styled.div`
-  display: flex;
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+  ${media.desktop`
+    display: flex;
+  `}
 `;
 
 const AddCardButton = styled(Link)`
@@ -26,6 +32,21 @@ const AddCardButton = styled(Link)`
   right: 1rem;
   z-index: 100;
 `;
+
+let swipeOffset = 0;
+
+function getRelativeIndex(index, referenceIndex) {
+  return index - referenceIndex;
+}
+
+function getColumnOffset(index, currentColumnIndex, ignoreSwipe = false) {
+  return window.outerWidth * getRelativeIndex(index, currentColumnIndex) + (ignoreSwipe ? 0 : swipeOffset);
+}
+
+function setElementOffset(element, offset) {
+  //element.style.transform = `translate(${offset}px, 0px)`;
+  element.style.left = `${offset}px`;
+}
 
 function Board({ boards, cards, dispatch, match }) {
   const boardId = match.params.id;
@@ -43,6 +64,42 @@ function Board({ boards, cards, dispatch, match }) {
   const board = boards.find(b => `${b.id}` === boardId );
   const currentColumn = board.columns[columnIndex];
   const title = isTablet() ? currentColumn.name : board.name;
+  const columns = board.columns.map(column => ({
+    ...column,
+    ref: createRef()
+  }));
+  const moveColumns = () => {
+    columns.forEach(({ ref }, index) => {
+      const { current: element } = ref;
+      
+      if (!element) {
+        return;
+      }
+
+      const offset = getColumnOffset(index, columnIndex);
+
+      // console.log(index, offset, element.style.left, element.style.top);
+      
+      setElementOffset(element, offset);
+    });  
+  };
+  const animateColumns = referenceIndex => {
+    const animations = columns.map(({ ref }, index) => {
+      const { current: element } = ref;
+      
+      if (!element) {
+        return;
+      }
+
+      const offset = getColumnOffset(index, referenceIndex, true);
+
+      console.log('animate', offset);
+
+      ///console.log(index, offset, element.style.left, element.style.top);
+      
+      setElementOffset(element, offset);
+    });  
+  };
 
   let isSwiping = false;
   let startPosition, endPosition;
@@ -58,6 +115,10 @@ function Board({ boards, cards, dispatch, match }) {
       startPosition = position;
     }
 
+    swipeOffset = position.x;
+    moveColumns();
+    //console.log('swipeOffset', swipeOffset);
+
     isSwiping = true;
   };
 
@@ -68,15 +129,18 @@ function Board({ boards, cards, dispatch, match }) {
       Math.min(columnIndex + 1, board.columns.length - 1) :
       Math.max(0, columnIndex - 1);
 
-    if (Math.abs(diff) > 50) {
-      setColumnIndex(index);
-    }
+    animateColumns(index);
+
+    swipeOffset = 0;
+   // if (Math.abs(diff) > 50) {
+   //   setColumnIndex(index);
+   // }
   };
 
   const onCardMoved = (column, card, index) => {
     dispatch(moveCard(column, card, index));
   };
-
+  
   return (
     <Swipe
       onSwipeStart={onSwipeStart}
@@ -87,12 +151,14 @@ function Board({ boards, cards, dispatch, match }) {
         {theme =>
           <View background={theme.background} title={title} >
               <Columns>
-                {board.columns.map((column, key) => (
+                {columns.map((column, index) => (
                   <Column
                     column={column}
                     currentColumn={currentColumn}
-                    key={key}
+                    key={index}
+                    number={index}
                     cards={cards}
+                    ref={column.ref}
                     onCardMoved={onCardMoved}
                   />
                 ))}

@@ -20,9 +20,9 @@ const media = Object.keys(sizes).reduce((acc, label) => {
 export default media;
 
 export function isMobile() {
-  return window.innerWidth < sizes.tablet;
+  return window.outerWidth < sizes.tablet;
 }
 
 export function isTablet() {
-  return window.innerWidth < sizes.desktop;
+  return window.outerWidth < sizes.desktop;
 }

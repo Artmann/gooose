@@ -6,8 +6,10 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   background: ${ props => props.background };
+  min-height: 100vh;
   padding-top: 2.5rem;
   position: relative;
+  width: 100%;
 
   ${media.desktop`
     padding-top: 0;
