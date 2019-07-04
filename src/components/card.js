@@ -1,20 +1,21 @@
 import { Draggable } from 'react-beautiful-dnd';
 import React from 'react';
 import { ThemeConsumer } from '../context/theme';
+import { boxShadow } from '../styled-components/shadows';
 import marked from 'marked';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 
 const CardContainer = styled.div`
+  ${boxShadow}
   background: ${ props => props.background };
   border: solid 1px ${ props => props.borderColor }
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
   color: ${ props => props.color };
   display: flex;
   flex-direction: column;
   font-size: 1.25rem;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
   padding: 0.5rem 0.25rem;
   position: relative;
   text-decoration: none;
