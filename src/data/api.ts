@@ -1,11 +1,14 @@
 import Adapter from "./adapter";
+import pluralize from 'pluralize';
 
 export default class Api {
-  constructor(adapter) {
+  private adapter: Adapter;
+
+  constructor(adapter?: Adapter) {
     this.adapter = adapter || new Adapter();
   }
 
-  async createCard(boardId, text, color) {
+  async createCard(boardId: number, text: string, color: string) {
     const { card } = await this.adapter.post('/cards', {
       card: {
         boardId,
@@ -17,7 +20,7 @@ export default class Api {
     return card;
   }
 
-  async createSession(email, password) {
+  async createSession(email: string, password: string) {
     const { session } = await this.adapter.post('/sessions', {
       email,
       password
@@ -26,7 +29,7 @@ export default class Api {
     return session;
   }
 
-  async createUser(email, name, password) {
+  async createUser(email: string, name: string, password: string) {
     const { user } = await this.adapter.post('/users', {
       user: {
         email,
@@ -38,7 +41,7 @@ export default class Api {
     return user;
   }
 
-  async getBoard(id) {
+  async getBoard(id: number) {
     const { board } = await this.adapter.get(`/boards/${id}`);
 
     return board;
@@ -56,7 +59,23 @@ export default class Api {
     return cards;
   }
 
-  async updateCard(id, data) {
+  async find<T>(modelName: string, id: number): Promise<T> {
+    const path = `/${pluralize(modelName)}`;
+    const response = await this.adapter.get(path);
+    const data = response[modelName];
+
+    return data as T;
+  }
+
+  async findAll<T>(modelName: string): Promise<T[]> {
+    const path = `/${pluralize(modelName)}`;
+    const response = await this.adapter.get(path);
+    const data = response[pluralize(modelName)];
+
+    return data as T[];
+  }
+
+  async updateCard(id: number, data: object) {
     const { card } = await this.adapter.patch(`/cards/${id}`, {
       card: {
         ...data

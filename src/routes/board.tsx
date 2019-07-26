@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { fetchBoard, fetchCards, moveCard } from '../actions';
+import { fetchBoard, fetchCards, moveCard, fetchModel, fetchModels } from '../actions';
 
 import Column from "../components/column.js";
 import { Link } from 'react-router-dom'
+//@ts-ignore
 import Swipe from 'react-easy-swipe';
 import { ThemeConsumer } from '../context/theme';
 import View from '../components/view';
 import { connect } from 'react-redux';
 import { isTablet } from "../styled-components/media";
 import styled from 'styled-components';
+import IBoard from '../data/models/board';
+import ICard from '../data/models/card';
+import IColumn from '../data/models/column';
 
 const Columns = styled.div`
   display: flex;
@@ -27,31 +31,45 @@ const AddCardButton = styled(Link)`
   z-index: 100;
 `;
 
-function Board({ boards, cards, dispatch, match }) {
+interface BoardRouteProps {
+  boards: IBoard[];
+  cards: ICard[];
+  dispatch: Function;
+  match: any;
+};
+
+interface Position {
+  x: number;
+  y: number;
+}
+
+function Board({ boards = [], cards = [], dispatch, match }: BoardRouteProps) {
   const boardId = match.params.id;
   const [columnIndex, setColumnIndex] = useState(0);
+  const board = boards.find(b => `${b.id}` === boardId );
 
   useEffect(() => {
-    dispatch(fetchBoard(boardId));
-    dispatch(fetchCards());
+    dispatch(fetchModel<IBoard>('board', boardId));
+    dispatch(fetchModels<ICard>('card'));
   }, []);
 
-  if (boards.length === 0) {
+
+  if (boards.length === 0 || !board) {
     return <div>Loading...</div>;
   }
 
-  const board = boards.find(b => `${b.id}` === boardId );
   const currentColumn = board.columns[columnIndex];
   const title = isTablet() ? currentColumn.name : board.name;
 
   let isSwiping = false;
-  let startPosition, endPosition;
+  let startPosition: Position;
+  let endPosition: Position;
 
   const onSwipeStart = () => {
     isSwiping = false;
   };
 
-  const onSwipeMove = position => {
+  const onSwipeMove = (position: Position) => {
     if (isSwiping) {
       endPosition = position;
     } else {
@@ -73,7 +91,7 @@ function Board({ boards, cards, dispatch, match }) {
     }
   };
 
-  const onCardMoved = (column, card, index) => {
+  const onCardMoved = (column: IColumn, card: ICard, index: number) => {
     dispatch(moveCard(column, card, index));
   };
 
@@ -85,6 +103,7 @@ function Board({ boards, cards, dispatch, match }) {
       >
       <ThemeConsumer>
         {theme =>
+          //@ts-ignore
           <View background={theme.background} title={title} >
               <Columns>
                 {board.columns.map((column, key) => (
@@ -93,6 +112,7 @@ function Board({ boards, cards, dispatch, match }) {
                     currentColumn={currentColumn}
                     key={key}
                     cards={cards}
+                    //@ts-ignore
                     onCardMoved={onCardMoved}
                   />
                 ))}
@@ -108,7 +128,7 @@ function Board({ boards, cards, dispatch, match }) {
   );
 }
 
-const mapStateToProps = ({ data }) => ({
+const mapStateToProps = ({ data }: any) => ({
   boards: data.boards,
   cards: data.cards
 });

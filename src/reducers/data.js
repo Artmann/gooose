@@ -1,3 +1,5 @@
+import pluralize from 'pluralize';
+
 const initialState = {
   boards: [],
   cards: []
@@ -71,6 +73,18 @@ export default function data(state = initialState, action) {
       return {
         ...state,
         cards: reOrderCards(state.cards, action.column, action.card, action.index)
+      };
+    case 'FETCHED_MODEL':
+      const key = pluralize(action.modelName);
+
+      return {
+        ...state,
+        [key]: addOrUpdate(state[key], action.model)
+      };
+    case 'FETCHED_MODELS':
+      return {
+        ...state,
+        [pluralize(action.modelName)]: [...action.models]
       };
     default:
       return state;

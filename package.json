@@ -7,11 +7,12 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "marked": "^0.6.1",
+    "pluralize": "^8.0.0",
     "pusher-js": "^4.4.0",
     "react": "^16.8.2",
     "react-beautiful-dnd": "^10.0.4",
     "react-dom": "^16.8.2",
-    "react-easy-swipe": "^0.0.17",
+    "react-easy-swipe": "^0.0.18",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5",
@@ -39,7 +40,17 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.6.8",
+    "@types/pluralize": "^0.0.29",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.5",
+    "@types/react-redux": "^7.1.1",
+    "@types/react-router-dom": "^4.3.4",
+    "@types/redux": "^3.6.0",
+    "@types/styled-components": "^4.1.18",
     "babel-plugin-styled-components": "^1.10.4",
-    "cypress": "^3.1.5"
+    "cypress": "^3.1.5",
+    "typescript": "^3.5.3"
   }
 }
