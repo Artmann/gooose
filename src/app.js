@@ -12,6 +12,7 @@ import light from './themes/light';
 
 const Board = lazy(() => import('./routes/board'));
 const Boards = lazy(() => import('./routes/boards'));
+const Card = lazy(() => import('./routes/card'));
 const NewCard = lazy(() => import('./routes/new-card'));
 const SignIn = lazy(() => import('./routes/sign-in'));
 const SignUp = lazy(() => import('./routes/sign-up'));
@@ -73,6 +74,7 @@ class App extends Component {
                 <Route exact path='/boards' render={ props => <Boards {...props} api={this.api} /> } />
                 <Route exact path="/boards/:id/cards/new" render={ props => <NewCard {...props} api={this.api} /> }/>
                 <Route path='/boards/:id' render={ props => <Board {...props} api={this.api} /> } />
+                <Route path='/cards/:id' render={ props => <Card {...props} api={this.api} /> } />
               </Switch>
             </Suspense>
           </Router>

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   background: ${ props => props.background };
-  padding-top: 2.5rem;
+  padding-top: ${ props => props.hasHeader ? '2.5rem' : '0' };
   position: relative;
 
   ${media.desktop`
@@ -14,13 +14,13 @@ const Container = styled.div`
   `}
 `;
 
-export default function View({ children, title }) {
+export default function View({ children, hasHeader, title }) {
   return (
     <ThemeConsumer>
       {
         theme =>
-          <Container background={theme.background}>
-            <AppHeader title={title} />
+          <Container background={theme.background} hasHeader={hasHeader}>
+            <AppHeader isEnabled={hasHeader} title={title} />
             { children }
           </Container>
       }

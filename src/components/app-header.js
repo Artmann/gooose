@@ -7,7 +7,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   background: #fff;
   border: solid 1px ${ props => props.borderColor };
-  display: flex;
+  display: ${ props => props.isEnabled ? 'flex' : 'none' };
   height: 3rem;
   justify-content: center;
   left: 0;
@@ -27,12 +27,12 @@ const Title = styled.h1`
   text-transform: uppercase;
 `;
 
-function AppHeader({ title }) {
+function AppHeader({ isEnabled, title }) {
   return (
     <ThemeConsumer>
       {
         theme =>
-          <Container borderColor={theme.borderColor} >
+          <Container borderColor={theme.borderColor} isEnabled={isEnabled}>
             <Title color={theme.textColor}>
               {title}
             </Title>

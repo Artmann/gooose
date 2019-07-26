@@ -50,6 +50,12 @@ export default class Api {
     return boards;
   }
 
+  async getCard(id) {
+    const { card } = await this.adapter.get(`/cards/${id}`);
+
+    return card;
+  }
+
   async getCards() {
     const { cards } = await this.adapter.get('/cards');
 

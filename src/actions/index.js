@@ -26,6 +26,12 @@ export function fetchBoards() {
   };
 }
 
+export function fetchCard(id) {
+  return function (dispatch) {
+    api.getCard(id).then(card => dispatch(fetchedCard(card)));
+  }
+}
+
 export function fetchCards() {
   return function (dispatch) {
     api.getCards().then(cards => dispatch(fetchedCards(cards)));
