@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import CardView from '../components/card-view';
 import { ThemeConsumer } from '../context/theme';
 import View from '../components/view';
 import { connect } from 'react-redux';
-import { fetch } from "../actions";
+import { find } from "../actions";
 
 function Card({ cards, dispatch, match }) {
   console.log('CARDS', cards);
@@ -12,7 +12,7 @@ function Card({ cards, dispatch, match }) {
   const cardId = parseInt(match.params.id, 10);
 
   useEffect(() => {
-    dispatch(fetch('card', cardId));
+    dispatch(find('card', cardId));
   }, []);
 
   const card = cards.find(c => `${c.id}` === cardId );

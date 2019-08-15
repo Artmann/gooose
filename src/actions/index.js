@@ -1,6 +1,29 @@
 import Api from '../data/api';
+import { getRelationships } from '../data/model-registry';
+import { singular } from 'pluralize';
 
 const api = new Api();
+
+function fetchRelatedResources(dispatch, modelName, resource) {
+  const relationships = getRelationships(modelName);
+  
+  relationships.forEach(({ modelName, name, type }) => {
+    const fieldName = type === 'single' ? `${singular(name)}Id` : `${singular(name)}Ids`;
+    
+    if (!resource.hasOwnProperty(fieldName)) {
+      console.log(`Expected resource to have the property '${fieldName}' on ${modelName}`);
+
+      return;
+    }
+    
+    const ids = Array.isArray(resource[fieldName]) ? resource[fieldName] : [resource[fieldName]];
+    
+    ids.forEach(id => {
+      console.log(`Fetch Relation ${modelName} ${id}`);
+      dispatch(find(modelName, id, { asRelation: true }));
+    });
+  });
+}
 
 export function appStarted() {
   return {
@@ -14,7 +37,16 @@ export function authorized() {
   };
 }
 
-export function fetch(modelName, id) {
+export function find(modelName, id, options = {}) {
+  const defaultOptions = {
+    asRelation: false
+  };
+
+  options = {
+    ...defaultOptions,
+    ...options
+  }
+
   return function (dispatch) {
     dispatch({
       type: 'FETCH_STARTED',
@@ -23,6 +55,8 @@ export function fetch(modelName, id) {
     });
 
     api.fetchResource(modelName, id).then(resource => {
+      fetchRelatedResources(dispatch, modelName, resource);
+
       dispatch({
         type: 'FETCHED_RESOURCE',
         modelName,

@@ -10,6 +10,25 @@ export function getModel(modelName) {
   return modelRegistry[modelName];
 }
 
+export function getRelationships(modelName) {
+  const model = getModel(modelName);
+
+  return Object.keys(model)
+    .filter(key => Array.isArray(model[key]))
+    .reduce((previous, key) => {
+      const [ type, otherModelName ] = model[key];
+
+      return [
+        ...previous,
+        {
+          modelName: otherModelName,
+          name: key,
+          type
+        }
+      ];
+    }, []);
+}
+
 export function registerModel(name, model) {
   modelRegistry[name] = model;
 }
