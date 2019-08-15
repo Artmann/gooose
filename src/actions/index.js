@@ -14,6 +14,24 @@ export function authorized() {
   };
 }
 
+export function fetch(modelName, id) {
+  return function (dispatch) {
+    dispatch({
+      type: 'FETCH_STARTED',
+      modelName,
+      id
+    });
+
+    api.fetchResource(modelName, id).then(resource => {
+      dispatch({
+        type: 'FETCHED_RESOURCE',
+        modelName,
+        resource
+      });
+    });
+  }
+}
+
 export function fetchBoard(id) {
   return function (dispatch) {
     api.getBoard(id).then(board => dispatch(fetchedBoard(board)));

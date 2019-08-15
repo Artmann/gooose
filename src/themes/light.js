@@ -7,6 +7,6 @@ export default {
   headerColor: '#6f7488',
   linkColor: '#3e5267',
   inputColor: '#363d44',
-  textColor: '#333',
+  textColor: '#20252d',
   secondaryTextColor: '#888'
 };

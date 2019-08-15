@@ -1,16 +1,21 @@
+import { createObject } from '../data/model';
+import pluralize from 'pluralize';
+
 const initialState = {
   boards: [],
   cards: []
 }
 
-function addOrUpdate(collection, model) {
-  if (collection.find(item => item.id === model.id)) {
-    return collection.map(item => item.id === model.id ? model : item);
+function addOrUpdate(collection, resource) {
+  const existingResource = collection.find(item => item.id === resource.id);
+
+  if (existingResource) {
+    return collection.map(item => item.id === resource.id ? { ...existingResource, ...resource } : item);
   }
 
   return [
     ...collection,
-    model
+    resource
   ];
 }
 
@@ -39,8 +44,22 @@ function reOrderCards(cards, column, card, index) {
   }).sort((a, b) => a.order - b.order);
 }
 
+function updateResource(state, modelName, resource) {
+  const collectionName = pluralize(modelName);
+  const collection = state.hasOwnProperty(collectionName) ? state[collectionName] : [];
+
+  return {
+    ...state,
+    [collectionName]: addOrUpdate(collection, resource)
+  };
+}
+
 export default function data(state = initialState, action) {
   switch (action.type) {
+    case 'FETCH_STARTED':
+      return updateResource(state, action.modelName, createObject(action.modelName, { id: action.id }));
+    case 'FETCHED_RESOURCE':
+      return updateResource(state, action.modelName, action.resource);
     case 'FETCHED_BOARD':
       return {
         ...state,

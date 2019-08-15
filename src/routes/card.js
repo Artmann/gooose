@@ -4,16 +4,17 @@ import CardView from '../components/card-view';
 import { ThemeConsumer } from '../context/theme';
 import View from '../components/view';
 import { connect } from 'react-redux';
-import { fetchCard } from "../actions";
+import { fetch } from "../actions";
 
-function Board({ boards, cards, dispatch, match }) {
-  const cardId = match.params.id;
-  const [columnIndex, setColumnIndex] = useState(0);
+function Card({ cards, dispatch, match }) {
+  console.log('CARDS', cards);
+
+  const cardId = parseInt(match.params.id, 10);
 
   useEffect(() => {
-    dispatch(fetchCard(cardId));
+    dispatch(fetch('card', cardId));
   }, []);
-  
+
   const card = cards.find(c => `${c.id}` === cardId );
 
   return (
@@ -28,8 +29,7 @@ function Board({ boards, cards, dispatch, match }) {
 }
 
 const mapStateToProps = ({ data }) => ({
-  boards: data.boards,
   cards: data.cards
 });
 
-export default connect(mapStateToProps)(Board);
+export default connect(mapStateToProps)(Card);

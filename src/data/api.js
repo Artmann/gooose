@@ -1,4 +1,11 @@
-import Adapter from "./adapter";
+import Adapter from './adapter';
+import pluralize from 'pluralize';
+
+function buildUrl(modelName, id) {
+  const resourceName = pluralize(modelName);
+
+  return id ? `/${resourceName}/${id}` : `/${resourceName}`;
+}
 
 export default class Api {
   constructor(adapter) {
@@ -36,6 +43,14 @@ export default class Api {
     });
 
     return user;
+  }
+
+  async fetchResource(modelName, id) {
+    const url = buildUrl(modelName, id);
+
+    const data = await this.adapter.get(url);
+
+    return data[modelName];
   }
 
   async getBoard(id) {

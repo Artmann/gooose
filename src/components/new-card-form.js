@@ -59,7 +59,7 @@ export default function NewCardForm({ createCard, errorMessage = null, isSubmitt
 
       <Box>
         <CtaButton data-test-sign-in-button="true">
-          Sign Up
+          Create Card
         </CtaButton>
       </Box>
     </BigForm>
@@ -68,7 +68,7 @@ export default function NewCardForm({ createCard, errorMessage = null, isSubmitt
 
 NewCardForm.propTypes = {
   createCard: PropTypes.func.isRequired,
-  
+
   errorMessage: PropTypes.string,
   isSubmitting: PropTypes.bool
 };

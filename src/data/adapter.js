@@ -5,6 +5,7 @@ export default  class Adapter {
 
     this.baseUrl = process.env.NODE_ENV === 'production' ? productionUrl : developmentUrl;
     this.baseUrl = productionUrl;
+    this.baseUrl = developmentUrl;
   }
 
   headers() {
@@ -43,7 +44,7 @@ export default  class Adapter {
     });
 
     const data = await response.json();
-    
+
     if (!response.ok) {
       throw new Error(data.errors[0]);
     }

@@ -1,6 +1,7 @@
+import { mount, shallow } from 'enzyme';
+
 import React from 'react';
 import TextEditor from './text-editor';
-import { mount, shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 
 describe('TextEditor', () => {
