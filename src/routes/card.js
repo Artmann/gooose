@@ -15,7 +15,9 @@ function Card({ cards, dispatch, match }) {
     dispatch(find('card', cardId));
   }, []);
 
-  const card = cards.find(c => `${c.id}` === cardId );
+  const card = cards.find(c => c.id === cardId);
+
+  console.log('DISPLAYING CARD', card);
 
   return (
     <ThemeConsumer>

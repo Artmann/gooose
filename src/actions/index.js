@@ -20,7 +20,11 @@ function fetchRelatedResources(dispatch, modelName, resource) {
     
     ids.forEach(id => {
       console.log(`Fetch Relation ${modelName} ${id}`);
-      dispatch(find(modelName, id, { asRelation: true }));
+      const action = find(modelName, id, { asRelation: true });
+
+      if (action) {
+        dispatch(action);
+      }
     });
   });
 }
@@ -37,7 +41,17 @@ export function authorized() {
   };
 }
 
+const loadedResources = [];
+
 export function find(modelName, id, options = {}) {
+  const hash = `${modelName}-${id}`;
+
+  if (loadedResources.includes(hash)) {
+    console.log(`${hash} has already been loaded`);
+
+    return null;
+  }
+
   const defaultOptions = {
     asRelation: false
   };
@@ -55,6 +69,8 @@ export function find(modelName, id, options = {}) {
     });
 
     api.fetchResource(modelName, id).then(resource => {
+      loadedResources.push(hash);
+
       fetchRelatedResources(dispatch, modelName, resource);
 
       dispatch({
