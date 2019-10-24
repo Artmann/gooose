@@ -5,7 +5,7 @@ export default  class Adapter {
 
     this.baseUrl = process.env.NODE_ENV === 'production' ? productionUrl : developmentUrl;
     this.baseUrl = productionUrl;
-    //this.baseUrl = developmentUrl;
+    this.baseUrl = developmentUrl;
   }
 
   headers() {

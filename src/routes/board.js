@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { fetchBoard, fetchCards, moveCard } from '../actions';
-
-import Column from "../components/column.js";
-import { Link } from 'react-router-dom'
-import Swipe from 'react-easy-swipe';
-import { ThemeConsumer } from '../context/theme';
-import View from '../components/view';
-import { connect } from 'react-redux';
-import { isTablet } from "../styled-components/media";
 import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
+import Swipe from 'react-easy-swipe';
+import { useResource } from 'react-courier';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
+
+import { fetchBoard, fetchCards, moveCard } from '../actions';
+import Column from '../components/column.js';
+import View from '../components/view';
+import { ThemeConsumer } from '../context/theme';
+import { isTablet } from '../styled-components/media';
 
 const Columns = styled.div`
   display: flex;
@@ -32,9 +33,13 @@ function Board({ boards, cards, dispatch, match }) {
   const [columnIndex, setColumnIndex] = useState(0);
 
   useEffect(() => {
-    dispatch(fetchBoard(boardId));
-    dispatch(fetchCards());
+    //dispatch(fetchBoard(boardId));
+    //dispatch(fetchCards());
   }, []);
+
+  useResource('board', boardId, () => {
+
+  });
 
   if (boards.length === 0) {
     return <div>Loading...</div>;
@@ -99,7 +104,7 @@ function Board({ boards, cards, dispatch, match }) {
               </Columns>
 
               <AddCardButton to={ `/boards/${board.id}/cards/new` }>
-                <i className="fas fa-plus"></i>
+                <i className='fas fa-plus'></i>
               </AddCardButton>
           </View>
         }

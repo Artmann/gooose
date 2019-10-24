@@ -6,18 +6,18 @@ const api = new Api();
 
 function fetchRelatedResources(dispatch, modelName, resource) {
   const relationships = getRelationships(modelName);
-  
+
   relationships.forEach(({ modelName, name, type }) => {
     const fieldName = type === 'single' ? `${singular(name)}Id` : `${singular(name)}Ids`;
-    
+
     if (!resource.hasOwnProperty(fieldName)) {
       console.log(`Expected resource to have the property '${fieldName}' on ${modelName}`);
 
       return;
     }
-    
+
     const ids = Array.isArray(resource[fieldName]) ? resource[fieldName] : [resource[fieldName]];
-    
+
     ids.forEach(id => {
       console.log(`Fetch Relation ${modelName} ${id}`);
       const action = find(modelName, id, { asRelation: true });
@@ -73,6 +73,7 @@ export function find(modelName, id, options = {}) {
 
       fetchRelatedResources(dispatch, modelName, resource);
 
+      console.log('DISPATCH FETCHED RESOURCE', modelName, id, resource);
       dispatch({
         type: 'FETCHED_RESOURCE',
         modelName,
