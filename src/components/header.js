@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import media from '../styled-components/media';
 import styled from 'styled-components';
 
+import logo from '../logo.png';
+
 const headerHeight = 48;
 
 const StyledHeader = styled.div`
@@ -22,22 +24,13 @@ const StyledHeader = styled.div`
   top: 0;
 `;
 const BrandLink = styled(Link)`
-  @font-face {
-    font-family: 'Gilroy';
-    src: url('Gilroy-ExtraBold.otf');
-  }
-
   align-items: center;
-  color: #151b26;
   display: flex;
-  font-family: 'Gilroy';
-  font-size: 1.25rem;
   text-decoration: none;
 `;
 const BrandImage = styled.img`
-  height: 1.5rem;
   margin-right: 0.5rem;
-  width: 1.5rem;
+  width: 7rem;
 `;
 const Navigation = styled.nav`
   display: none;
@@ -93,9 +86,8 @@ export default function Header() {
     <StyledHeader hasShadow={hasScrolledDown}>
       <LateralMenuButton className="fas fa-bars" onClick={ toggleLateralMenu }/>
       <LateralMenu isOpen={ showLateralMenu } />
-      <BrandLink to="/">
-        <BrandImage src="/images/icon.png" alt="towery.io" />
-        <span>towery.io</span>
+      <BrandLink to="/" title="Gooose Logo">
+        <BrandImage src={logo} alt="Gooose Logo" />
       </BrandLink>
       <Navigation>
         <NavigationLinks>

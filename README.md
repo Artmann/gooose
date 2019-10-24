@@ -1,3 +1,3 @@
-# Towery.io - Visualize Your Work
+# Gooose - Visualize Work. Deliver Value.
 
-Towery.io is the friendly digital Kanban Board that makes your work visible.
+Help your team win! Gooose is the easy-to-use Kanban board that makes it easy to visualize your work, reduce waste and deliver value to your customers as soon as possible.

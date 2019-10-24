@@ -62,10 +62,10 @@ export default function HeroSection() {
     <FrontPageSection>
       <Container>
         <First>
-          <Header>Make more time for the work that matters most</Header>
+          <Header>Visualize Work. Deliver Value.</Header>
           <Blurp>
             <p>
-              Help your team win! Towery.io is the easy-to-use <strong>Kanban board</strong> to help you
+              Help your team win! Gooose is the easy-to-use <strong>Kanban board</strong> that makes it easy to
               visualize your work, reduce waste and deliver value to your customers as soon as possible.
             </p>
             <TryForFreeButton to="/sign-up">Sign Up for Free</TryForFreeButton>
