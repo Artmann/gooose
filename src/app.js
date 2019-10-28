@@ -63,7 +63,7 @@ class App extends Component {
 
                 <Route
                   path='/sign-up'
-                  render={ props => <SignUp {...props} api={this.api} /> }
+                  render={ props => <SignUp {...props} /> }
                   />
                 <Route
                   path='/sign-in'

@@ -30,7 +30,7 @@ function SignUpForm({ errorMessage = null, isSubmitting = false, signUp }) {
         label="Name"
         name="name"
         placeholder="John Smith"
-        required={false}
+        required={true}
         value={name}
         onChange={({ target }) => setName(target.value)}
       />
@@ -39,7 +39,7 @@ function SignUpForm({ errorMessage = null, isSubmitting = false, signUp }) {
         label="Email"
         name="email"
         placeholder="john.smith@company.com"
-        required={true}
+
         type="email"
         value={email}
         onChange={({ target }) => setEmail(target.value)}

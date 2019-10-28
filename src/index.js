@@ -3,17 +3,26 @@ import 'whatwg-fetch';
 
 import * as serviceWorker from './serviceWorker';
 
-import App from './app';
-import { Provider } from 'react-redux';
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+
+import App from './app';
 import lazyLoadAssets from './lazy-load-assets';
 import store from './store';
 
+const client = new ApolloClient({
+  uri: 'https://api.gooose.app/graphql',
+});
+
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <ApolloProvider client={ client }>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </ApolloProvider>,
   document.getElementById('root')
 );
 
