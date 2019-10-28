@@ -1,40 +1,38 @@
-import React, { useState } from 'react';
+import { useMutation } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+import React from 'react';
 
 import SignInForm from '../components/sign-in-form';
 import ViewWithCenteredContent from '../styled-components/view-with-centered-content';
-import { authorized } from '../actions';
-import { connect } from 'react-redux';
 
-function SignIn({ api, dispatch, history }) {
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const signIn = async (email, password) => {
-    try {
-      setErrorMessage(null);
-      setIsSubmitting(true);
-
-      const { token } = await api.createSession(email, password);
-
-      localStorage.setItem('token', token);
-      dispatch(authorized());
-      setIsSubmitting(false);
-      history.push('/boards');
-    } catch (error) {
-      setIsSubmitting(false);
-      setErrorMessage(error.toString());
+const SIGN_IN = gql`
+  mutation SignIn($email: String!, $password: String!) {
+    signIn(email: $email, password: $password) {
+      token
     }
+  }
+`;
+
+export default function SignIn({ history }) {
+  const [ signIn, { error, loading } ] = useMutation(SIGN_IN, {
+    onCompleted: ({ signIn: { token }}) => {
+      localStorage.setItem('gooose:token', token);
+
+      history.push('/boards')
+    }
+  });
+
+  const signInHandler = (email, password) => {
+    signIn({ variables: { email, password } });
   };
 
   return (
     <ViewWithCenteredContent>
       <SignInForm
-        errorMessage={errorMessage}
-        isSubmitting={isSubmitting}
-        signIn={signIn}
+        errorMessage={ error ? error.message : null }
+        isSubmitting={ loading }
+        signIn={ signInHandler }
       />
     </ViewWithCenteredContent>
   );
 }
-
-export default connect(null)(SignIn);
