@@ -1,22 +1,29 @@
-import React, { useEffect } from 'react';
+import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+import React from 'react';
 
-import { connect } from 'react-redux';
-import { fetchBoards } from '../actions';
+import LoadingSpinner from '../components/loading-spinner';
 
-function Boards({ boards, dispatch, history }) {
-  useEffect(() => {
-    dispatch(fetchBoards());
-  });
+const boardsQuery = gql`
+  {
+    boards {
+      id
+    }
+  }
+`;
 
-  if (boards.length > 0) {
-    history.push(`/boards/${boards[0].id}`);
+export default function Boards({ history }) {
+  const { loading, data } = useQuery(boardsQuery);
+
+  if (!loading) {
+    if (data && data.boards && data.boards.length > 0) {
+      history.push(`/boards/${ data.boards[0].id }`);
+    }
   }
 
-  return <div className="view">No boards yet { boards.length }</div>
+  return (
+    <div className="view">
+      <LoadingSpinner />
+    </div>
+   );
 }
-
-const mapStateToProps = ({ data }) => ({
-  boards: data.boards
-});
-
-export default connect(mapStateToProps)(Boards);
