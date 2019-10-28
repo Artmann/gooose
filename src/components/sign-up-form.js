@@ -39,7 +39,7 @@ function SignUpForm({ errorMessage = null, isSubmitting = false, signUp }) {
         label="Email"
         name="email"
         placeholder="john.smith@company.com"
-
+        required={ true }
         type="email"
         value={email}
         onChange={({ target }) => setEmail(target.value)}

@@ -10,9 +10,10 @@ import TextInput from '../components/text-input';
 function SignInForm({ errorMessage = null, isSubmitting = false, signIn }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+
   const onSubmit = event => {
     event.preventDefault();
+
     signIn(email, password);
   };
 
