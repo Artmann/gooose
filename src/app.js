@@ -21,10 +21,6 @@ class App extends Component {
     this.api = new Api();
   }
 
-  componentDidMount() {
-
-  }
-
   render() {
     return (
       <ThemeProvider theme={light}>
