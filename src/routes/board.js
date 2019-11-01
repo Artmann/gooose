@@ -1,12 +1,10 @@
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Swipe from 'react-easy-swipe';
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { moveCard } from '../actions';
 import Column from '../components/column.js';
 import View from '../components/view';
 import { ThemeConsumer } from '../context/theme';
