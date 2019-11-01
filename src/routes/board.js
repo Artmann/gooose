@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { fetchBoard, fetchCards, moveCard } from '../actions';
-
-import Column from "../components/column.js";
-import { Link } from 'react-router-dom'
+import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+import React, { useEffect, useState } from 'react';
 import Swipe from 'react-easy-swipe';
-import { ThemeConsumer } from '../context/theme';
-import View from '../components/view';
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { isTablet } from "../styled-components/media";
 import styled from 'styled-components';
+
+import { moveCard } from '../actions';
+import Column from '../components/column.js';
+import View from '../components/view';
+import { ThemeConsumer } from '../context/theme';
+import { isTablet } from '../styled-components/media';
+import LoadingSpinner from '../components/loading-spinner';
 
 const Columns = styled.div`
   display: flex;
@@ -27,22 +30,38 @@ const AddCardButton = styled(Link)`
   z-index: 100;
 `;
 
-function Board({ boards, cards, dispatch, match }) {
+const boardQuery = gql`
+  query getBoard($id: ID!) {
+    board(id: $id) {
+      id
+      name
+      columns {
+        id
+        name
+        cards {
+          id
+          text
+        }
+      }
+    }
+  }
+`;
+
+export default function Board({ match }) {
   const boardId = match.params.id;
   const [columnIndex, setColumnIndex] = useState(0);
 
-  useEffect(() => {
-    dispatch(fetchBoard(boardId));
-    dispatch(fetchCards());
-  }, []);
+  const { loading, error, data } = useQuery(boardQuery, { variables: { id: boardId } });
 
-  if (boards.length === 0) {
-    return <div>Loading...</div>;
+  if (loading) {
+    return <LoadingSpinner />;
   }
 
-  const board = boards.find(b => `${b.id}` === boardId );
+  const { board } = data;
   const currentColumn = board.columns[columnIndex];
   const title = isTablet() ? currentColumn.name : board.name;
+
+  console.log(board);
 
   let isSwiping = false;
   let startPosition, endPosition;
@@ -74,7 +93,8 @@ function Board({ boards, cards, dispatch, match }) {
   };
 
   const onCardMoved = (column, card, index) => {
-    dispatch(moveCard(column, card, index));
+    //dispatch(moveCard(column, card, index));
+    console.log('MOVE CARD', column, card, index);
   };
 
   return (
@@ -92,7 +112,7 @@ function Board({ boards, cards, dispatch, match }) {
                     column={column}
                     currentColumn={currentColumn}
                     key={key}
-                    cards={cards}
+                    cards={column.cards}
                     onCardMoved={onCardMoved}
                   />
                 ))}
@@ -107,10 +127,3 @@ function Board({ boards, cards, dispatch, match }) {
     </Swipe>
   );
 }
-
-const mapStateToProps = ({ data }) => ({
-  boards: data.boards,
-  cards: data.cards
-});
-
-export default connect(mapStateToProps)(Board);
