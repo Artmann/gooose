@@ -42,9 +42,7 @@ const Name = styled.div`
 
 function Column({ cards, column, currentColumn, onCardMoved = () => {} }) {
   const isCurrent = column.id === currentColumn.id;
-  const myCards = cards
-    .filter(card => card.columnId === column.id)
-    .sort((a, b) => a.order - b.order);
+  const myCards = cards.sort((a, b) => a.order - b.order);
 
   const onDragEnd = ({ destination, source }) => {
     const card = myCards[source.index];
