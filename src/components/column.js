@@ -12,7 +12,7 @@ const ColumnContainer = styled.div`
   display: ${ props => props.isCurrent ? 'flex' : 'none' };
   flex-direction: column;
   min-height: 100vh;
-  padding: 1.5rem 2rem;
+  padding: 3rem 2rem;
 
   &:last-child {
     border: none;

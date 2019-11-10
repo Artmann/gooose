@@ -38,6 +38,11 @@ const boardQuery = gql`
         name
         cards {
           id
+          blocked
+          color
+          key
+          order
+          timebox
           text
         }
       }
