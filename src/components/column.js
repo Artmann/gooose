@@ -40,7 +40,7 @@ const Name = styled.div`
   ${media.desktop` display: block; `}
 `;
 
-function Column({ cards, column, currentColumn, onCardMoved = () => {} }) {
+function Column({ board, cards, column, currentColumn, onCardMoved = () => {} }) {
   const isCurrent = column.id === currentColumn.id;
   const myCards = cards.sort((a, b) => a.order - b.order);
 
@@ -69,7 +69,7 @@ function Column({ cards, column, currentColumn, onCardMoved = () => {} }) {
 
                 {
                   myCards.map((card, key) => (
-                    <Card card={card} key={key} index={key} />
+                    <Card board={board} card={card} key={key} index={key} />
                   ))
                 }
               </ColumnContainer>

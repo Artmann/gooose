@@ -6,7 +6,7 @@ import marked from 'marked';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 
-const CardContainer = styled.div`
+const CardContainer = styled.a`
   ${boxShadow}
   background: ${ props => props.background };
   border: solid 1px ${ props => props.borderColor }
@@ -47,7 +47,7 @@ const Key = styled.div`
 `;
 
 
-function Card({ card, history, index }) {
+function Card({ board, card, index }) {
   const { color, key, text } = card;
   const renderedText = () => ({ __html: marked(text || '') });
 
@@ -60,10 +60,10 @@ function Card({ card, history, index }) {
               background={theme.containerBackground}
               borderColor={theme.borderColor}
               color={theme.textColor}
+              href={ `/boards/${board.id}/cards/${card.key}` }
               ref={provided.innerRef}
               {...provided.draggableProps}
               {...provided.dragHandleProps}
-              onClick={() => history.push(`/cards/${card.id}`) }
               >
               <CardColorMarker color={color} />
               <CardText dangerouslySetInnerHTML={renderedText()}></CardText>
