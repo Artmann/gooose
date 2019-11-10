@@ -112,6 +112,7 @@ export default function Board({ match }) {
               <Columns>
                 {board.columns.map((column, key) => (
                   <Column
+                    board={board}
                     column={column}
                     currentColumn={currentColumn}
                     key={key}
