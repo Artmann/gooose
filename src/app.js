@@ -1,13 +1,13 @@
+import Pusher from 'pusher-js';
 import React, { Component, Suspense, lazy } from 'react';
+import { connect } from 'react-redux';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
-import { appStarted, fetchedData } from './actions';
+import { ThemeProvider } from 'styled-components';
 
+import { appStarted, fetchedData } from './actions';
+import LoadingSpinner from './components/loading-spinner';
 import Api from './data/api';
 import Home from './routes/home';
-import LoadingSpinner from './components/loading-spinner';
-import Pusher from 'pusher-js';
-import { ThemeProvider } from 'styled-components';
-import { connect } from 'react-redux';
 import light from './themes/light';
 
 const Board = lazy(() => import('./routes/board'));
