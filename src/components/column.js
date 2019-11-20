@@ -1,4 +1,4 @@
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { Droppable } from 'react-beautiful-dnd';
 
 import Card from './card';
 import React from 'react';
@@ -44,40 +44,28 @@ function Column({ board, cards, column, currentColumn, onCardMoved = () => {} })
   const isCurrent = column.id === currentColumn.id;
   const myCards = cards.sort((a, b) => a.order - b.order);
 
-  const onDragEnd = ({ destination, source }) => {
-    const card = myCards[source.index];
-
-    if (!destination) {
-      return;
-    }
-
-    onCardMoved(column, card, destination.index);
-  };
-
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId='droppable'>
-        {(provided, snapshot) => (
-          <ThemeConsumer>
-            {theme =>
-              <ColumnContainer
-                borderColor={theme.borderColor}
-                isCurrent={isCurrent}
-                ref={provided.innerRef}
-                >
-                <Name color={theme.headerColor}>{column.name}</Name>
+    <Droppable droppableId={ column.id }>
+      {(provided, snapshot) => (
+        <ThemeConsumer>
+          {theme =>
+            <ColumnContainer
+              borderColor={theme.borderColor}
+              isCurrent={isCurrent}
+              ref={provided.innerRef}
+              >
+              <Name color={theme.headerColor}>{column.name}</Name>
 
-                {
-                  myCards.map((card, key) => (
-                    <Card board={board} card={card} key={key} index={key} />
-                  ))
-                }
-              </ColumnContainer>
-            }
-          </ThemeConsumer>
-        )}
-      </Droppable>
-    </DragDropContext>
+              {
+                myCards.map((card, key) => (
+                  <Card board={board} card={card} key={key} index={key} />
+                ))
+              }
+            </ColumnContainer>
+          }
+        </ThemeConsumer>
+      )}
+    </Droppable>
   );
 }
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { DragDropContext } from 'react-beautiful-dnd';
 import Swipe from 'react-easy-swipe';
 import { Link } from 'react-router-dom'
 import styled from 'styled-components';
@@ -35,8 +36,6 @@ export default function Columns({ board, onCardMoved }) {
   const currentColumn = board.columns[columnIndex];
   const title = isTablet() ? currentColumn.name : board.name;
 
-  console.log(board);
-
   let isSwiping = false;
   let startPosition, endPosition;
 
@@ -66,6 +65,17 @@ export default function Columns({ board, onCardMoved }) {
     }
   };
 
+  const onDragEnd = ({ destination, source }) => {
+    console.log('dragEnd', source, destination);
+    // const card = myCards[source.index];
+
+    // if (!destination) {
+    //   return;
+    // }
+
+    // onCardMoved(column, card, destination.index);
+  };
+
   return (
     <Swipe
       onSwipeStart={ onSwipeStart }
@@ -75,6 +85,7 @@ export default function Columns({ board, onCardMoved }) {
       <ThemeConsumer>
         {theme =>
           <View background={ theme.background } title={ title } >
+            <DragDropContext onDragEnd={onDragEnd}>
               <Container>
                 {board.columns.map(column => (
                   <Column
@@ -87,7 +98,7 @@ export default function Columns({ board, onCardMoved }) {
                   />
                 ))}
               </Container>
-
+            </DragDropContext>
               <AddCardButton to={ `/boards/${board.id}/cards/new` }>
                 <i className="fas fa-plus"></i>
               </AddCardButton>
