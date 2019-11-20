@@ -7,10 +7,14 @@ const Base = styled.div`
 `;
 
 export const Label = styled.label`
+  color: ${ props => props.theme.labelColor };
   display: block;
-  font-size: 0.8rem;
-  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
   margin-bottom: 0.5rem;
+  text-transform: uppercase;
 `;
 
 const Input = styled.input`
@@ -42,7 +46,9 @@ const Input = styled.input`
 function TextInput({ autoFocus = false, label, name, placeholder = '', required = false, type = "text", value, onChange = () => {} }) {
   return (
     <Base>
-      <Label>{label}</Label>
+      <Label>
+        {label}
+      </Label>
       <Input
         autoFocus={autoFocus}
         name={name}

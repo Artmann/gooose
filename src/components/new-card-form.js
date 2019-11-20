@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import ColorSelection from './color-selection';
 import { CtaButton } from '../styled-components/buttons';
 import FormError from "./form-error";
-import { Label } from './text-input';
+import { Label } from './design/text-input';
 import LoadingSpinner from "./loading-spinner";
 import PropTypes from 'prop-types';
 import TextEditor from './text-editor';

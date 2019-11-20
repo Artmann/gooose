@@ -5,8 +5,9 @@ export default {
   containerShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08)',
   fontMono: 'Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace',
   headerColor: '#6f7488',
+  labelColor: '#4A5568',
   linkColor: '#3e5267',
   inputColor: '#363d44',
-  textColor: '#333',
+  textColor: '#2D3748',
   secondaryTextColor: '#888'
 };

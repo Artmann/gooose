@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import React from 'react';
+import React, { useState } from 'react';
 
 import Columns from '../components/columns';
 import LoadingSpinner from '../components/loading-spinner';
@@ -29,19 +29,22 @@ const boardQuery = gql`
 
 export default function Board({ match }) {
   const boardId = match.params.id;
+  const [board, setBoard] = useState(null);
 
-const { loading, error, data } = useQuery(boardQuery, {
-    pollInterval: 1500,
+  const { loading } = useQuery(boardQuery, {
+    fetchPolicy: 'no-cache',
+    // pollInterval: 1500,
     variables: {
       id: boardId
+    },
+    onCompleted: data => {
+      setBoard(data.board);
     }
   });
 
-  if (loading) {
+  if (loading || !board) {
     return <LoadingSpinner />;
   }
-
-  const { board } = data;
 
   console.log(board);
 

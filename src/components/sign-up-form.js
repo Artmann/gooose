@@ -6,7 +6,7 @@ import FormError from "./form-error";
 import LoadingSpinner from "./loading-spinner";
 import PasswordStrengthIndicator from "./password-strength-indicator";
 import PropTypes from 'prop-types';
-import TextInput from '../components/text-input';
+import TextInput from './design/text-input';
 
 function SignUpForm({ errorMessage = null, isSubmitting = false, signUp }) {
   const [name, setName] = useState("");
