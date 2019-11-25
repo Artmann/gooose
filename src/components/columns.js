@@ -66,14 +66,17 @@ export default function Columns({ board, onCardMoved }) {
   };
 
   const onDragEnd = ({ destination, source }) => {
-    console.log('dragEnd', source, destination);
-    // const card = myCards[source.index];
+    if (!destination) {
+      return;
+    }
 
-    // if (!destination) {
-    //   return;
-    // }
-
-    // onCardMoved(column, card, destination.index);
+    onCardMoved({
+      index: source.index,
+      columnId: source.droppableId
+    }, {
+      index: destination.index,
+      columnId: destination.droppableId
+    });
   };
 
   return (
