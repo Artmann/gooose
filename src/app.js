@@ -9,6 +9,7 @@ import Pusher from 'pusher-js';
 import { ThemeProvider } from 'styled-components';
 import { connect } from 'react-redux';
 import light from './themes/light';
+import { getStaticPages, StaticPage } from './routes/static-pages';
 
 const Board = lazy(() => import('./routes/board'));
 const Boards = lazy(() => import('./routes/boards'));
@@ -73,6 +74,19 @@ class App extends Component {
                 <Route exact path='/boards' render={ props => <Boards {...props} api={this.api} /> } />
                 <Route exact path="/boards/:id/cards/new" render={ props => <NewCard {...props} api={this.api} /> }/>
                 <Route path='/boards/:id' render={ props => <Board {...props} api={this.api} /> } />
+
+                {
+                  getStaticPages().map(page =>
+                    <Route
+                      exact
+                      key={ page.slug }
+                      path={ `/${page.slug}` }
+                      render={ props => <StaticPage { ...props }
+                      page={ page } />
+                    } />
+                  )
+                }
+
               </Switch>
             </Suspense>
           </Router>
