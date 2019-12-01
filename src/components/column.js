@@ -21,8 +21,8 @@ const ColumnContainer = styled.div`
   ${media.desktop`
     display: flex;
     flex: 1;
-    max-width: 24rem;
-    padding-top: 2rem;
+    max-width: 20rem;
+    padding: 2rem 3rem;
   `}
 `;
 
