@@ -5,7 +5,7 @@ exports[`TextInput renders correctly 1`] = `
   className="sc-bdVaJa FuWvN"
 >
   <label
-    className="sc-bwzfXH eYcMxH"
+    className="sc-bwzfXH jymBSK"
   >
     Name
   </label>
@@ -28,7 +28,7 @@ exports[`TextInput renders correctly with props 1`] = `
   className="sc-bdVaJa FuWvN"
 >
   <label
-    className="sc-bwzfXH eYcMxH"
+    className="sc-bwzfXH jymBSK"
   >
     Name
   </label>

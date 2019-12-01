@@ -1,11 +1,10 @@
-import React, { Component, Suspense, lazy } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
-
-import Api from './data/api';
-import Home from './routes/home';
-import LoadingSpinner from './components/loading-spinner';
 import { ThemeProvider } from 'styled-components';
-import { connect } from 'react-redux';
+
+
+import LoadingSpinner from './components/loading-spinner';
+import Home from './routes/home';
 import light from './themes/light';
 
 const Board = lazy(() => import('./routes/board'));
@@ -14,41 +13,46 @@ const NewCard = lazy(() => import('./routes/new-card'));
 const SignIn = lazy(() => import('./routes/sign-in'));
 const SignUp = lazy(() => import('./routes/sign-up'));
 
-class App extends Component {
-  constructor(props) {
-    super(props);
+export default function App() {
+  return (
+    <ThemeProvider theme={light}>
+      <div className="app">
+        <Router>
+          <Suspense fallback={<LoadingSpinner />}>
+            <Switch>
+              <Route exact path='/' component={Home} />
 
-    this.api = new Api();
-  }
+              <Route
+                path='/sign-up'
+                render={ props => <SignUp {...props} /> }
+                />
+              <Route
+                path='/sign-in'
+                render={ props => <SignIn {...props} /> }
+                />
 
-  render() {
-    return (
-      <ThemeProvider theme={light}>
-        <div className="app">
-          <Router>
-            <Suspense fallback={<LoadingSpinner />}>
-              <Switch>
-                <Route exact path='/' component={Home} />
+              <Route
+                exact
+                path='/boards'
+                render={ props => <Boards {...props} /> }
+                />
 
-                <Route
-                  path='/sign-up'
-                  render={ props => <SignUp {...props} /> }
-                  />
-                <Route
-                  path='/sign-in'
-                  render={ props => <SignIn {...props} /> }
-                  />
+              <Route
+                exact
+                path="/boards/:id/cards/new"
+                render={ props => <NewCard {...props} /> }
+                />
 
-                <Route exact path='/boards' render={ props => <Boards {...props} api={this.api} /> } />
-                <Route exact path="/boards/:id/cards/new" render={ props => <NewCard {...props} api={this.api} /> }/>
-                <Route path='/boards/:id' render={ props => <Board {...props} api={this.api} /> } />
-              </Switch>
-            </Suspense>
-          </Router>
-        </div>
-      </ThemeProvider>
-    );
-  }
+              <Route
+                exact
+                path='/boards/:id'
+                render={ props => <Board {...props} /> }
+                />
+
+            </Switch>
+          </Suspense>
+        </Router>
+      </div>
+    </ThemeProvider>
+  );
 }
-
-export default connect(null)(App);

@@ -11,15 +11,13 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 
 import App from './app';
 import lazyLoadAssets from './lazy-load-assets';
-import store from './store';
 
 const httpLink = createHttpLink({
-  uri: 'https://api2.gooose.app/graphql'
-  //uri: 'http://localhost:4444/graphql'
+  //uri: 'https://api.gooose.app/graphql'
+  uri: 'http://localhost:4444/graphql'
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -40,9 +38,7 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={ client }>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <App />
   </ApolloProvider>,
   document.getElementById('root')
 );
