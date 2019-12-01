@@ -16,7 +16,7 @@ const CardContainer = styled.a`
   font-size: 1.25rem;
   justify-content: space-between;
   margin-bottom: 2.5rem;
-  padding: 0.5rem 0.25rem;
+  padding: 1rem 0.25rem;
   position: relative;
   text-decoration: none;
   width: 100%;
@@ -34,6 +34,7 @@ const CardText = styled.div`
   flex: 1;
   line-height: 1.75;
   font-size: 1.0rem;
+  margin-bottom: 1rem;
   padding: 0.5rem 1.25rem;
 
   p { margin: 0; }
