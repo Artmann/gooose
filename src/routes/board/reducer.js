@@ -5,7 +5,6 @@ Array.prototype.insert = function ( index, item ) {
 const cardIncrement = 2048;
 
 function moveCard(board, origin, destination) {
-  console.log({ board, origin, destination });
   const columns = [...board.columns];
   const originCards = [...columns.find(c => c.id === origin.columnId).cards];
   const destinationCards = [...columns.find(c => c.id === destination.columnId).cards];

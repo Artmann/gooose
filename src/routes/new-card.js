@@ -31,8 +31,6 @@ export default function newCard({ history, match }) {
 
   const [ createCard, { error, loading } ] = useMutation(createCardQuery, {
     onCompleted: (data) => {
-      console.log(data);
-
       history.push(`/boards/${boardId}`);
     }
   });

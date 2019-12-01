@@ -58,8 +58,6 @@ export default function Board({ match }) {
     return <LoadingSpinner />;
   }
 
-  console.log(board);
-
   const onCardMoved = (origin, destination) => {
     const [ updatedBoard, changes ] = reducer.moveCard(board, origin, destination);
 

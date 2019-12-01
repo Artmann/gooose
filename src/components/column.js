@@ -22,7 +22,7 @@ const ColumnContainer = styled.div`
     display: flex;
     flex: 1;
     max-width: 20rem;
-    padding: 2rem 3rem;
+    padding: 2rem 3grem;
   `}
 `;
 
