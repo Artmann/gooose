@@ -8,18 +8,20 @@ import View from '../styled-components/view';
 const createCardQuery = gql`
   mutation CreateCard(
     $boardId: ID!
-    $text: String!
+    $summary: String!
+    $text: String
     $blocked: Boolean
     $color: String
     $timebox: Int
   ) {
-    createCard(boardId: $boardId, text: $text, blocked: $blocked, color: $color, timebox: $timebox) {
+    createCard(boardId: $boardId, summary: $summary, text: $text, blocked: $blocked, color: $color, timebox: $timebox) {
       id
       blocked
       color
       key
       order
       timebox
+      summary
       text
     }
   }
@@ -35,8 +37,8 @@ export default function newCard({ history, match }) {
     }
   });
 
-  const createCardHandler = (text, color) => {
-    createCard({ variables: { boardId, text, color } });
+  const createCardHandler = (summary, text, color) => {
+    createCard({ variables: { boardId, summary, text, color } });
   };
 
   return (
