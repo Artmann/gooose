@@ -14,4 +14,4 @@ addDecorator(storyFn =>
   </ThemeProvider>
 );
 
-configure(require.context('../src/components', true, /\.stories\.js$/), module);
+configure(require.context('../src/components', true, /\.story\.(js|ts|tsx)$/), module);

@@ -1,5 +1,5 @@
 import React from 'react';
-import TextInput from './text-input';
+import TextInput from '.';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 

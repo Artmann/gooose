@@ -1,10 +1,10 @@
-import { Draggable } from 'react-beautiful-dnd';
+import marked from 'marked';
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+import styled from 'styled-components';
+
 import { ThemeConsumer } from '../context/theme';
 import { boxShadow } from '../styled-components/shadows';
-import marked from 'marked';
-import styled from 'styled-components';
-import { withRouter } from 'react-router-dom';
 
 const CardContainer = styled.a`
   ${boxShadow}
@@ -16,6 +16,7 @@ const CardContainer = styled.a`
   font-size: 1.25rem;
   justify-content: space-between;
   margin-bottom: 2.5rem;
+  max-width: 22rem;
   padding: 1rem 0.25rem;
   position: relative;
   text-decoration: none;
@@ -47,33 +48,36 @@ const Key = styled.div`
   text-transform: uppercase;
 `;
 
+const defaultDragOptions = {
+  innerRef: null,
+  draggableProps: {},
+  dragHandleProps: {}
+};
 
-function Card({ board, card, index }) {
-  const { color, key, text } = card;
-  const renderedText = () => ({ __html: marked(text || '') });
+function Card({ card, disableLink = false, draggable = defaultDragOptions }) {
+  const { boardId, color, key, summary, text } = card;
+  const renderedText = () => ({ __html: marked((summary || text ) || '') });
 
   return (
-    <Draggable draggableId={card.id} index={index}>
-      {(provided, snapshot) => (
-         <ThemeConsumer>
-          {theme =>
-            <CardContainer
-              background={theme.containerBackground}
-              borderColor={theme.borderColor}
-              color={theme.textColor}
-              href={ `/boards/${board.id}/cards/${card.key}` }
-              ref={provided.innerRef}
-              {...provided.draggableProps}
-              {...provided.dragHandleProps}
-              >
-              <CardColorMarker color={color} />
-              <CardText dangerouslySetInnerHTML={renderedText()}></CardText>
-              <Key color={theme.secondaryTextColor}>{key}</Key>
-            </CardContainer>
-          }
-        </ThemeConsumer>
-      )}
-    </Draggable>
+    <ThemeConsumer>
+      {theme =>
+        <CardContainer
+          background = { theme.containerBackground }
+          borderColor = { theme.borderColor }
+          color = { theme.textColor }
+          href = { disableLink ? null : `/boards/${boardId}/cards/${card.key}` }
+          ref = { draggable.innerRef }
+          { ...draggable.draggableProps }
+          { ...draggable.dragHandleProps }
+          >
+          <CardColorMarker color={ color } />
+          <CardText dangerouslySetInnerHTML={ renderedText() }></CardText>
+          <Key color={ theme.secondaryTextColor }>
+            { key }
+          </Key>
+        </CardContainer>
+      }
+    </ThemeConsumer>
   );
 }
 

@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import Column from '../components/column.js';
 import View from '../components/view';
 import { ThemeConsumer } from '../context/theme';
-import { isTablet } from '../styled-components/media';
+import { isTabletOrSmaller } from '../styled-components/media';
 
 const AddCardButton = styled(Link)`
   background: #15cd72;
@@ -34,7 +34,7 @@ export default function Columns({ board, onCardMoved }) {
   }
 
   const currentColumn = board.columns[columnIndex];
-  const title = isTablet() ? currentColumn.name : board.name;
+  const title = isTabletOrSmaller() ? currentColumn.name : board.name;
 
   let isSwiping = false;
   let startPosition, endPosition;
@@ -92,7 +92,6 @@ export default function Columns({ board, onCardMoved }) {
               <Container>
                 {board.columns.map(column => (
                   <Column
-                    board={ board }
                     column={ column }
                     currentColumn={ currentColumn }
                     key={ column.id }

@@ -2,10 +2,10 @@
 
 exports[`TextInput renders correctly 1`] = `
 <div
-  className="sc-bdVaJa FuWvN"
+  className="sc-bwzfXH fltgEW"
 >
   <label
-    className="sc-bwzfXH jymBSK"
+    className="sc-bdVaJa dGGcPj"
   >
     Name
   </label>
@@ -25,10 +25,10 @@ exports[`TextInput renders correctly 1`] = `
 
 exports[`TextInput renders correctly with props 1`] = `
 <div
-  className="sc-bdVaJa FuWvN"
+  className="sc-bwzfXH fltgEW"
 >
   <label
-    className="sc-bwzfXH jymBSK"
+    className="sc-bdVaJa dGGcPj"
   >
     Name
   </label>

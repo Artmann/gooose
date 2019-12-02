@@ -5,7 +5,7 @@ import { CtaButton } from '../styled-components/buttons';
 import FormError from "./form-error";
 import LoadingSpinner from "./loading-spinner";
 import PropTypes from 'prop-types';
-import TextInput from '../components/design/text-input';
+import TextInput from './design/text-input';
 
 function SignInForm({ errorMessage = null, isSubmitting = false, signIn }) {
   const [email, setEmail] = useState("");

@@ -2,19 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
+import Label from '../label';
+
 const Base = styled.div`
   margin-bottom: 2rem;
-`;
-
-export const Label = styled.label`
-  color: ${ props => props.theme.labelColor };
-  display: block;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 300;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
 `;
 
 const Input = styled.input`

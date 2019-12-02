@@ -1,4 +1,4 @@
-import { Droppable } from 'react-beautiful-dnd';
+import { Draggable, Droppable } from 'react-beautiful-dnd';
 
 import Card from './card';
 import React from 'react';
@@ -37,10 +37,12 @@ const Name = styled.div`
   text-transform: uppercase;
   width: 100%;
 
-  ${media.desktop` display: block; `}
+  ${media.desktop`
+    display: block;
+  `}
 `;
 
-function Column({ board, cards, column, currentColumn, onCardMoved = () => {} }) {
+function Column({ cards, column, currentColumn, onCardMoved = () => {} }) {
   const isCurrent = column.id === currentColumn.id;
   const myCards = cards.sort((a, b) => a.order - b.order);
 
@@ -57,8 +59,20 @@ function Column({ board, cards, column, currentColumn, onCardMoved = () => {} })
               <Name color={theme.headerColor}>{column.name}</Name>
 
               {
-                myCards.map((card, key) => (
-                  <Card board={board} card={card} key={key} index={key} />
+                myCards.map((card, index) => (
+                  <Draggable draggableId={card.id} index = { index }>
+                    {(provided, snapshot) => (
+                      <Card
+                        card = { card }
+                        key = { card.id }
+                        draggable = {{
+                          innerRef: provided.innerRef,
+                          draggableProps: provided.draggableProps,
+                          dragHandleProps: provided.dragHandleProps
+                        }}
+                        />
+                    )}
+                  </Draggable>
                 ))
               }
             </ColumnContainer>
