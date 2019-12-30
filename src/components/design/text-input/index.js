@@ -34,7 +34,7 @@ const Input = styled.input`
   }
 `;
 
-function TextInput({ autoFocus = false, label, name, placeholder = '', required = false, type = "text", value, onChange = () => {} }) {
+function TextInput({ autoFocus = false, label, name, placeholder = '', required = false, type = "text", value, onChange }) {
   return (
     <Base>
       <Label>

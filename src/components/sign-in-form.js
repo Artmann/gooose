@@ -58,7 +58,7 @@ function SignInForm({ errorMessage = null, isSubmitting = false, signIn }) {
         <SmallFormLink to="/sign-up">
           Sign Up
         </SmallFormLink>
-        <SmallFormLink to="/reset-password">
+        <SmallFormLink to="/request-new-password">
           Reset Password
         </SmallFormLink>
       </SmallFormLinks>

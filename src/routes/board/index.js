@@ -22,6 +22,7 @@ const boardQuery = gql`
           columnId
           key
           order
+          summary
           timebox
           text
         }
