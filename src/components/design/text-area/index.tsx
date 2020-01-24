@@ -1,13 +1,15 @@
-import React, { ReactElement, FormEvent } from 'react';
+import React, { ReactElement, FormEvent, forwardRef } from 'react';
 import styled from 'styled-components';
 
 export interface TextAreaProps {
-  autoFocus: boolean;
   onChange: (value: string) => void;
   placeholder: string;
   rows: number;
-  style?: object;
   value: string;
+
+  autoFocus?: boolean;
+  disabled?: boolean;
+  style?: object;
 }
 
 const StyledTextArea = styled.textarea`
@@ -21,13 +23,20 @@ const StyledTextArea = styled.textarea`
   width: 100%;
 `;
 
-export default function TextArea({ autoFocus, onChange, placeholder, value, rows, style={} }: TextAreaProps): ReactElement {
+function TextArea(
+  { autoFocus, disabled, onChange, placeholder, rows, style={}, value }: TextAreaProps,
+  ref: any
+): ReactElement {
   return <StyledTextArea
-      autoFocus = { autoFocus }
-      placeholder = { placeholder }
-      defaultValue = { value }
+      autoFocus = { autoFocus || false }
+      value = { value }
+      disabled={ disabled }
       onChange = { (event: FormEvent<HTMLTextAreaElement>) => onChange(event.currentTarget.value) }
+      placeholder = { placeholder }
+      ref={ ref }
       rows = { rows }
       style = { style }
-    />;
+  />;
 }
+
+export default forwardRef(TextArea);

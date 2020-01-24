@@ -7,15 +7,16 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloClient } from 'apollo-client';
 import { setContext } from 'apollo-link-context';
-import { createHttpLink } from 'apollo-link-http';
+import { createUploadLink } from 'apollo-upload-client';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './app';
 import lazyLoadAssets from './lazy-load-assets';
 
-const httpLink = createHttpLink({
-  uri: 'https://api.gooose.app/graphql'
+const uploadLink = createUploadLink({
+  // uri: 'https://api.gooose.app/graphql'
+  uri: 'http://localhost:4444/graphql'
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -31,7 +32,7 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: authLink.concat(httpLink)
+  link: authLink.concat(uploadLink)
 });
 
 ReactDOM.render(
