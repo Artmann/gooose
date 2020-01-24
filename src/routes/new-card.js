@@ -3,7 +3,9 @@ import gql from 'graphql-tag';
 import React from 'react';
 
 import NewCardForm from '../components/new-card-form';
+import ImageUploader from '../image-uploader';
 import View from '../styled-components/view';
+
 
 const createCardQuery = gql`
   mutation CreateCard(
@@ -26,10 +28,17 @@ const createCardQuery = gql`
     }
   }
 `;
+const uploadImageQuery = gql`
+  mutation UploadImage($boardId: ID!, $image: Upload!) {
+    uploadImage(boardId: $boardId, image: $image) { id, url }
+  }
+`;
 
-
-export default function newCard({ history, match }) {
+export default function NewCard({ history, match }) {
   const boardId = match.params.id;
+
+  const [ uploadImage ] = useMutation(uploadImageQuery);
+  const imageUploader = new ImageUploader(boardId, uploadImage);
 
   const [ createCard, { error, loading } ] = useMutation(createCardQuery, {
     onCompleted: (data) => {
@@ -46,6 +55,7 @@ export default function newCard({ history, match }) {
       <NewCardForm
         createCard={ createCardHandler }
         errorMessage={ error ? error.message : null }
+        imageUploader={ imageUploader }
         isSubmitting={ loading }
         />
     </View>
