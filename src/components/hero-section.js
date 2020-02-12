@@ -65,8 +65,8 @@ export default function HeroSection() {
           <Header>Visualize Work. Deliver Value.</Header>
           <Blurp>
             <p>
-              Help your team win! Gooose is the easy-to-use <strong>Kanban board</strong> that makes it easy to
-              visualize your work, reduce waste and deliver value to your customers as soon as possible.
+              Help your team win! Gooose is the easy-to-use <strong>Kanban board</strong> that helps you visualize your work,
+              reduce waste and deliver value to your customers as soon as possible.
             </p>
             <TryForFreeButton to="/sign-up">Sign Up for Free</TryForFreeButton>
           </Blurp>
