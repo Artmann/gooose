@@ -15,8 +15,7 @@ import App from './app';
 import lazyLoadAssets from './lazy-load-assets';
 
 const uploadLink = createUploadLink({
-  // uri: 'https://api.gooose.app/graphql'
-  uri: 'http://localhost:4444/graphql'
+  uri: 'https://api.gooose.app/graphql'
 });
 
 const authLink = setContext((_, { headers }) => {
