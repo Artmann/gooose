@@ -1,12 +1,43 @@
-import marked from 'marked';
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { ThemeConsumer } from '../context/theme';
 import { boxShadow } from '../styled-components/shadows';
 
-const CardContainer = styled.a`
+interface CardContainerProps {
+  background: string;
+  borderColor: string;
+  color: string;
+}
+
+interface DragOptions {
+  innerRef?: any;
+  draggableProps: object;
+  dragHandleProps: object;
+}
+
+interface Card {
+  id: string;
+  boardId: string;
+  blocked: boolean;
+  color: string;
+  columnId: string;
+  key: string;
+  order: number;
+  summary: string;
+  text: string;
+
+  timebox?: number;
+}
+
+interface CardProps {
+  card: Card;
+
+  disableLink?: boolean;
+  draggable?: DragOptions;
+}
+
+const CardContainer = styled.a<CardContainerProps>`
   ${boxShadow}
   background: ${ props => props.background };
   border: solid 1px ${ props => props.borderColor }
@@ -54,9 +85,8 @@ const defaultDragOptions = {
   dragHandleProps: {}
 };
 
-function Card({ card, disableLink = false, draggable = defaultDragOptions }) {
-  const { boardId, color, key, summary, text } = card;
-  const renderedText = () => ({ __html: marked((summary || text ) || '') });
+export default function Card({ card, disableLink = false, draggable = defaultDragOptions }: CardProps) {
+  const { boardId, color, key, summary } = card;
 
   return (
     <ThemeConsumer>
@@ -65,14 +95,17 @@ function Card({ card, disableLink = false, draggable = defaultDragOptions }) {
           background = { theme.containerBackground }
           borderColor = { theme.borderColor }
           color = { theme.textColor }
-          href = { disableLink ? null : `/boards/${boardId}/cards/${card.key}` }
+          href = { disableLink ? '' : `/boards/${boardId}/cards/${card.key}` }
           ref = { draggable.innerRef }
           { ...draggable.draggableProps }
           { ...draggable.dragHandleProps }
+          data-testid="card-link"
           >
           <CardColorMarker color={ color } />
-          <CardText dangerouslySetInnerHTML={ renderedText() }></CardText>
-          <Key color={ theme.secondaryTextColor }>
+          <CardText data-testid="card-text" >
+            { summary }
+          </CardText>
+          <Key color={ theme.secondaryTextColor } data-testid="card-key">
             { key }
           </Key>
         </CardContainer>
@@ -80,5 +113,3 @@ function Card({ card, disableLink = false, draggable = defaultDragOptions }) {
     </ThemeConsumer>
   );
 }
-
-export default withRouter(Card);

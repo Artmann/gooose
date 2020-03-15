@@ -23,6 +23,7 @@ const boardQuery = gql`
           key
           order
           timebox
+          summary
           text
         }
       }
