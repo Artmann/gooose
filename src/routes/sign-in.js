@@ -18,7 +18,7 @@ export default function SignIn({ history }) {
     onCompleted: ({ signIn: { token }}) => {
       localStorage.setItem('gooose:token', token);
 
-      history.push('/boards')
+      history.push('/boards');
     }
   });
 
