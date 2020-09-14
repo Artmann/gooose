@@ -60,7 +60,7 @@ function Column({ cards, column, currentColumn, onCardMoved = () => {} }) {
 
               {
                 myCards.map((card, index) => (
-                  <Draggable draggableId={card.id} index = { index }>
+                  <Draggable draggableId={card.id} index = { index } key={ card.id }>
                     {(provided, snapshot) => (
                       <Card
                         card = { card }
